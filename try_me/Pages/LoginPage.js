@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import styles from './pageStyle';
 import { Button, Dialog, DialogDefaultActions } from 'react-native-material-ui';
+import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
+import { Notifications } from 'expo';
 
 export default class LoginPage extends React.Component {
     static navigationOptions = {
@@ -22,25 +24,49 @@ export default class LoginPage extends React.Component {
             txtPass: '123456',
             userId:"",
             userName:"",
+            token:"",
+            userCode:0
         }
-    }
+    }   
+        componentDidMount() {
+            
+            registerForPushNotificationsAsync()
+                .then(tok => {
+                    this.setState({ token: tok });
+                    alert(tok);
+                });
+                // alert(this.state.token);
+            this._notificationSubscription = Notifications.addListener(this._handleNotification);
+                
+        this.updateToken(this.state.token);
+        }
 
-    // btnLogin = () => {
-    //     debugger;
-    //     if (this.state.txtID == 'Avi' && this.state.txtPass == '123') {
-    //         this.setState({ lblErr: false });
-    //         this.props.navigation.navigate('Home');
-    //     } else {
-    //         this.setState({ lblErr: true });
-    //     }
-    // };
+            
+        updateToken(token)
+        {   
+         console.warn("the token"+ token);
+          fetch('http://proj.ruppin.ac.il/bgroup76/test1/tar3/api/InsertToken?Token='+token+"&User="+this.state.userCode, {
+     
+            method: 'POST',
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+            body: JSON.stringify({}),
+          })
+            .then(res => res.json())
+            .then(response => {
+              if (response.userCode != 0) {
+                this.setState({ userCode: response.UserCode, isTrainer: response.isTrainer });
+                   
+                //alert("Success! User Code= " + this.state.userCode);            
+              }
+              else
+                alert("Incorrect password");
+            })
+    
+            .catch(error => console.warn('Error:', error.message));
+        }
 
+    //check if the username and password exist in the DB and navigate to home page
     btnPOST_Person = () => {
-        let per = {
-            Name: this.state.txtID,
-            Pass: this.state.txtPass
-        };
-        // alert(this.state.txtPass)
         // POST adds a random id to the object sent
         fetch('http://proj.ruppin.ac.il/bgroup76/test1/tar3/api/volunteers/?Id='+this.state.txtID+'&Password='+this.state.txtPass, {
             method: 'GET',
@@ -50,8 +76,6 @@ export default class LoginPage extends React.Component {
             }
         })
             .then(response => response.json())
-            // .then(res=>alert(res.Id+'\n'+res.Name))
-            //.then(data => this.setState({data}))
             .then(response => {
                 if (response.Id) {
                     this.setState({ userId: response.Id, userName:response.Name});
@@ -79,24 +103,13 @@ export default class LoginPage extends React.Component {
             // .then(this.checkUser());
     }
 
-    handleErrors = (response) => {
-        if (!response.ok) {
-            throw Error(response.statusText);
-        }
-        return response;
-    }
-
-    // checkUser=()=>{
-    //     if(this.state.data!=""){
-    //         this.setState({existUser: true});
-    //         this.setState({person:data});
-    //         this.props.navigation.navigate('Home');
+    // handleErrors = (response) => {
+    //     if (!response.ok) {
+    //         throw Error(response.statusText);
     //     }
-    //     else{
-    //         this.setState({existUser: false});
-    //         // this.props.navigation.navigate('Home');
-    //     }
+    //     return response;
     // }
+
     // btnPOST_Person = () => {
         // if(window.location.hostname==="localhost"){
         //     let url = 'http://localhost:54109/api/persons';

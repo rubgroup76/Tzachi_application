@@ -13,8 +13,9 @@ export default async function registerForPushNotificationsAsync() {
         // install, so this will only ask on iOS
         const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
         finalStatus = status;
-    }
-
+    
+        }
+        alert(existingStatus);
     // Stop here if the user did not grant permissions
     if (finalStatus !== 'granted') {
         return;
