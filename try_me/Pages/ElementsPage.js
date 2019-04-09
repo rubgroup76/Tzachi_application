@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import styles from './pageStyle';
 import { Button, Avatar, Badge, withBadge, colors } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+//import Icon from 'react-native-vector-icons/FontAwesome';
  
 
 export default class ElementsPage extends React.Component {

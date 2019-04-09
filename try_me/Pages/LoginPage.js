@@ -18,53 +18,66 @@ export default class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            txtName: 'avivshagan@gmail.com',
+            txtID:'033897125',
             txtPass: '123456',
-            person:"",
-            data:"",
-            existUser:false
+            userId:"",
+            userName:"",
         }
     }
 
-    btnLogin = () => {
-        debugger;
-        if (this.state.txtName == 'Avi' && this.state.txtPass == '123') {
-            this.setState({ lblErr: false });
-            this.props.navigation.navigate('Home');
-        } else {
-            this.setState({ lblErr: true });
-        }
-    };
+    // btnLogin = () => {
+    //     debugger;
+    //     if (this.state.txtID == 'Avi' && this.state.txtPass == '123') {
+    //         this.setState({ lblErr: false });
+    //         this.props.navigation.navigate('Home');
+    //     } else {
+    //         this.setState({ lblErr: true });
+    //     }
+    // };
 
-    // btnPOST_Person = () => {
-    //     let per = {
-    //         Name: this.state.txtName,
-    //         Pass: this.state.txtPass
-    //     };
-
-    //     // POST adds a random id to the object sent
-    //     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers', {
-    //         method: 'POST',
-    //         body: JSON.stringify(per),
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8"
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             if (json != null) {
-    //                 alert(`
-    //                 returned from server\n
-    //                 json= ${json}\n
-    //                 Name=${json.Name}\n
-    //                 Pass=${json.Pass}\n
-    //                 Age=${json.Age}`);
-    //                 this.props.navigation.navigate('Home');
-    //             } else {
-    //                 this.setState({ lblErr: true });
-    //             }
-    //         });
-    // }
+    btnPOST_Person = () => {
+        let per = {
+            Name: this.state.txtID,
+            Pass: this.state.txtPass
+        };
+        // alert(this.state.txtPass)
+        // POST adds a random id to the object sent
+        fetch('http://proj.ruppin.ac.il/bgroup76/test1/tar3/api/volunteers/?Id='+this.state.txtID+'&Password='+this.state.txtPass, {
+            method: 'GET',
+            // body: JSON.stringify({}),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => response.json())
+            // .then(res=>alert(res.Id+'\n'+res.Name))
+            //.then(data => this.setState({data}))
+            .then(response => {
+                if (response.Id) {
+                    this.setState({ userId: response.Id, userName:response.Name});
+                    this.props.navigation.navigate('Home',{userName: this.state.userName});
+                  }
+                else
+                  alert("Incorrect username or password");
+              })
+              .then(alert(this.state.userId))
+              .catch(error => console.warn('Error:', error.message));
+            // .then(json => {
+               // if (json != null) {
+                    // alert(`
+                    // returned from server\n
+                    // json= ${json}\n
+                    // Name=${json.Name}\n
+                    // Pass=${json.Password}\n
+                    // Age=${json.Age}`);
+                    // this.props.navigation.navigate('Home');
+                //}
+                // } else {
+                //     this.setState({ lblErr: true });
+                // }
+            // })
+            // .then(this.checkUser());
+    }
 
     handleErrors = (response) => {
         if (!response.ok) {
@@ -73,17 +86,18 @@ export default class LoginPage extends React.Component {
         return response;
     }
 
-    checkUser=()=>{
-        if(this.state.data!=""){
-            this.setState({person:data});
-            this.props.navigation.navigate('Home');
-        }
-        else{
-            this.setState({existUser: true});
-            this.props.navigation.navigate('Home');
-        }
-    }
-    btnPOST_Person = () => {
+    // checkUser=()=>{
+    //     if(this.state.data!=""){
+    //         this.setState({existUser: true});
+    //         this.setState({person:data});
+    //         this.props.navigation.navigate('Home');
+    //     }
+    //     else{
+    //         this.setState({existUser: false});
+    //         // this.props.navigation.navigate('Home');
+    //     }
+    // }
+    // btnPOST_Person = () => {
         // if(window.location.hostname==="localhost"){
         //     let url = 'http://localhost:54109/api/persons';
 
@@ -93,14 +107,14 @@ export default class LoginPage extends React.Component {
         //     .then(data  => this.setState({data}))
         //     .catch(error => this.setState({error:"There was an error in getting the persons"}));
         // }
-        //else{
-            fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/Volunteer')
-            .then(this.handleErrors)
-            .then(response=>response.json())
-            .then(data  => this.setState({data}))
-            .then(this.checkUser())
-            .catch(error => this.setState({error:"There was an error in getting the persons"}));
-        }
+        // //else{
+        //     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/Volunteer')
+        //     .then(this.handleErrors)
+        //     .then(response=>response.json())
+        //     .then(data  => this.setState({data}))
+        //     .then(this.checkUser())
+        //     .catch(error => this.setState({error:"There was an error in getting the persons"}));
+        // }
     //}
 
     render() {
@@ -113,11 +127,11 @@ export default class LoginPage extends React.Component {
                         source={require('../assets/TzahiIcon.png')} />
                 </View>
                 <View style={styles.ContentLogIn}>
-                    <Text style={styles.lblText}>Name:</Text>
+                    <Text style={styles.lblText}>ID:</Text>
                     <TextInput
                         style={styles.TxtInp}
-                        onChangeText={(text) => this.setState({ txtName: text })}
-                        value={this.state.txtName}
+                        onChangeText={(text) => this.setState({ txtID: text })}
+                        value={this.state.txtID}
                     />
                     <Text style={styles.lblText}>Password:</Text>
                     <TextInput
@@ -130,10 +144,8 @@ export default class LoginPage extends React.Component {
                         onPress={this.btnPOST_Person}>
                         <Text style={styles.textMedium}>Login</Text>
                     </TouchableOpacity>
-                    {!this.state.existUser && <Text style={styles.Err}>user not exist!</Text>}
-                    {this.state.existUser && <Text style={styles.Err}>user  exist!</Text>}
-                   
-                    <View style={{ margin: 20 }}>
+
+                    {/* <View style={{ margin: 20 }}>
                         <Button
                             primary text="LOGIN with WebAPI"
                             icon="directions-car"
@@ -158,8 +170,8 @@ export default class LoginPage extends React.Component {
                                     </Dialog.Actions>
                                 </Dialog>
                             </View>
-                        }
-                    </View>
+                        } 
+                    </View> */}
                 </View>
             </View >
         );
