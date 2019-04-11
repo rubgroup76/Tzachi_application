@@ -15,7 +15,7 @@ export default async function registerForPushNotificationsAsync() {
         finalStatus = status;
     
         }
-        alert(existingStatus);
+
     // Stop here if the user did not grant permissions
     if (finalStatus !== 'granted') {
         return;
@@ -23,8 +23,7 @@ export default async function registerForPushNotificationsAsync() {
 
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(token);
-    console.log(finalStatus);
+alert(token)
     //alert(token);
     // POST the token to your backend server from where you can retrieve it to send push notifications.
     return (

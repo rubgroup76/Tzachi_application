@@ -20,7 +20,7 @@ export default class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            txtID:'033897125',
+            txtID:'308010362',
             txtPass: '123456',
             userId:"",
             userName:"",
@@ -28,41 +28,21 @@ export default class LoginPage extends React.Component {
             userCode:0
         }
     }   
-        componentDidMount() {
-            
-            registerForPushNotificationsAsync()
-                .then(tok => {
-                    this.setState({ token: tok });
-                    alert(tok);
-                });
-                // alert(this.state.token);
-            this._notificationSubscription = Notifications.addListener(this._handleNotification);
-                
-        this.updateToken(this.state.token);
-        }
-
             
         updateToken(token)
         {   
-         console.warn("the token"+ token);
-          fetch('http://proj.ruppin.ac.il/bgroup76/test1/tar3/api/InsertToken?Token='+token+"&User="+this.state.userCode, {
+          fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/token/?User='+this.state.txtID+"&Token="+token, {
      
             method: 'POST',
             headers: { "Content-type": "application/json; charset=UTF-8" },
             body: JSON.stringify({}),
           })
+
             .then(res => res.json())
-            .then(response => {
-              if (response.userCode != 0) {
-                this.setState({ userCode: response.UserCode, isTrainer: response.isTrainer });
-                   
-                //alert("Success! User Code= " + this.state.userCode);            
-              }
-              else
-                alert("Incorrect password");
+            .then(response => {alert("good");
             })
     
-            .catch(error => console.warn('Error:', error.message));
+            .catch(error => console.warn('Error:', error));
         }
 
     //check if the username and password exist in the DB and navigate to home page
@@ -80,27 +60,23 @@ export default class LoginPage extends React.Component {
                 if (response.Id) {
                     this.setState({ userId: response.Id, userName:response.Name});
                     this.props.navigation.navigate('Home',{userName: this.state.userName});
+
+                    
+                        registerForPushNotificationsAsync()
+                        .then(tok => {
+                            this.setState({ token: tok });
+                        });
+                        // alert(this.state.token);
+                    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+
+                this.updateToken(this.state.token);
+                
                   }
                 else
                   alert("Incorrect username or password");
               })
-              .then(alert(this.state.userId))
               .catch(error => console.warn('Error:', error.message));
-            // .then(json => {
-               // if (json != null) {
-                    // alert(`
-                    // returned from server\n
-                    // json= ${json}\n
-                    // Name=${json.Name}\n
-                    // Pass=${json.Password}\n
-                    // Age=${json.Age}`);
-                    // this.props.navigation.navigate('Home');
-                //}
-                // } else {
-                //     this.setState({ lblErr: true });
-                // }
-            // })
-            // .then(this.checkUser());
+
     }
 
     // handleErrors = (response) => {
