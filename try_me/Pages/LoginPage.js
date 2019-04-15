@@ -48,7 +48,7 @@ export default class LoginPage extends React.Component {
     //check if the username and password exist in the DB and navigate to home page
     btnPOST_Person = () => {
         // POST adds a random id to the object sent
-        fetch('http://proj.ruppin.ac.il/bgroup76/test1/tar3/api/volunteers/?Id='+this.state.txtID+'&Password='+this.state.txtPass, {
+        fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/?Id='+this.state.txtID+'&Password='+this.state.txtPass, {
             method: 'GET',
             // body: JSON.stringify({}),
             headers: {
