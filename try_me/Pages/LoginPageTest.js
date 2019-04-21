@@ -6,6 +6,9 @@ import {
   removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 
+import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
+import { Notifications } from 'expo';
+
 import {
   StyleSheet,
   Text,
@@ -36,9 +39,63 @@ export default class LoginView extends Component {
     state = {
       email   : '',
       password: '',
+      txtID:'308010362',
+      txtPass: '123456',
+      userId:"",
+      userName:"",
+      token:"",
+      userCode:0
     }
   }
+  updateToken(token)
+  {   
+    fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/token/?User='+this.state.txtID+"&Token="+token, {
 
+      method: 'POST',
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({}),
+    })
+
+      .then(res => res.json())
+      .then(response => {alert("good");
+      })
+
+      .catch(error => console.warn('Error:', error));
+  }
+
+//check if the username and password exist in the DB and navigate to home page
+btnPOST_Person = () => {
+  // POST adds a random id to the object sent
+  fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/?Id='+this.state.txtID+'&Password='+this.state.txtPass, {
+      method: 'GET',
+      // body: JSON.stringify({}),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  })
+      .then(response => response.json())
+      .then(response => {
+          if (response.Id) {
+              this.setState({ userId: response.Id, userName:response.Name});
+              this.props.navigation.navigate('Home',{userName: this.state.userName});
+
+              
+                  registerForPushNotificationsAsync()
+                  .then(tok => {
+                      this.setState({ token: tok });
+                  });
+                  // alert(this.state.token);
+              this._notificationSubscription = Notifications.addListener(this._handleNotification);
+
+          this.updateToken(this.state.token);
+          
+            }
+          else
+            alert("Incorrect username or password");
+        })
+        .catch(error => console.warn('Error:', error.message));
+
+}
   onClickListener = (viewId) => {
     Alert.alert("Alert", "Button pressed "+viewId);
   }
@@ -58,10 +115,13 @@ export default class LoginView extends Component {
         <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/person'}}/>
           <TextInput style={styles.inputs}
-              placeholder="Email"
+              placeholder="ID"
               keyboardType="email-address"
               underlineColorAndroid='transparent'
-              onChangeText={(email) => this.setState({email})}/>
+              onChangeText={(text) => this.setState({ txtID: text })}
+              
+              // onChangeText={(id) => this.setState({txtID})}
+              />
         </View>
         
         <View style={styles.inputContainer}>
@@ -70,10 +130,11 @@ export default class LoginView extends Component {
               placeholder="Password"
               secureTextEntry={true}
               underlineColorAndroid='transparent'
-              onChangeText={(password) => this.setState({password})}/>
+              onChangeText={(text) => this.setState({ txtPass: text })}/>
         </View>
 
-        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.props.navigation.navigate('Home')}>
+        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} 
+        onPress={this.btnPOST_Person}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableHighlight>
 
