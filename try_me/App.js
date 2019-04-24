@@ -9,6 +9,9 @@ import PushNotPage from './Pages/PushNotPage';
 import ElementsPage from './Pages/ElementsPage';
 import EmergencyEvent from './Pages/EmergencyEvent';
 import LoginPageTest from './Pages/LoginPageTest';
+import Chat from './Components/Chat';
+import CreateAccount from './Components/CreateAccount';
+import LoginToChat from './Components/LoginToChat';
 import { ThemeProvider } from 'react-native-material-ui';
 
 
@@ -35,6 +38,9 @@ const AppNavigator = createStackNavigator(
     Elements:ElementsPage,
     Emergency: EmergencyEvent,
     LoginTest: LoginPageTest,
+    Chat: Chat,
+    LoginToChat:LoginToChat,
+    CreateAccount: CreateAccount,
   },
   {
     initialRouteName: 'Login',

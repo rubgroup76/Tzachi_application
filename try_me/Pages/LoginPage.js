@@ -134,6 +134,12 @@ export default class LoginPage extends React.Component {
                         <Text style={styles.textMedium}>Login</Text>
                     </TouchableOpacity>
 
+                    <TouchableOpacity
+                        style={styles.Button}
+                        onPress={() => this.props.navigation.navigate('LoginToChat')}>
+                        <Text style={styles.textMedium}>Login To Chat</Text>
+                    </TouchableOpacity>
+
                     {/* <View style={{ margin: 20 }}>
                         <Button
                             primary text="LOGIN with WebAPI"
