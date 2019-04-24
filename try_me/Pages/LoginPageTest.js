@@ -57,10 +57,10 @@ export default class LoginView extends Component {
     })
 
       .then(res => res.json())
-      .then(response => {alert("good");
+      .then(response => {alert(token);
       })
 
-      .catch(error => console.warn('Error:', error));
+      .catch(error => console.warn('Error:'+error));
   }
 
 //check if the username and password exist in the DB and navigate to home page
@@ -84,9 +84,9 @@ btnPOST_Person = () => {
                   .then(tok => {
                       this.setState({ token: tok });
                   });
-                  // alert(this.state.token);
+                   alert(this.state.token);
               this._notificationSubscription = Notifications.addListener(this._handleNotification);
-
+//alert(this.state.token)
           this.updateToken(this.state.token);
           
             }
@@ -116,7 +116,7 @@ btnPOST_Person = () => {
           <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/person'}}/>
           <TextInput style={styles.inputs}
               placeholder="ID"
-              keyboardType="email-address"
+              keyboardType="numeric"
               underlineColorAndroid='transparent'
               onChangeText={(text) => this.setState({ txtID: text })}
               
@@ -130,7 +130,8 @@ btnPOST_Person = () => {
               placeholder="Password"
               secureTextEntry={true}
               underlineColorAndroid='transparent'
-              onChangeText={(text) => this.setState({ txtPass: text })}/>
+              onChangeText={(text) => this.setState({ txtPass: text })}
+              />
         </View>
 
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} 

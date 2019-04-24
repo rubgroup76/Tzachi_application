@@ -7,6 +7,7 @@ import RiderDialog from '../Components/RiderDialog';
 import { Avatar, Badge, withBadge, colors } from 'react-native-elements';
 import { FloatingAction } from 'react-native-floating-action';
 
+
 export default class HomePage extends React.Component {
 
   static navigationOptions = {
@@ -53,7 +54,7 @@ export default class HomePage extends React.Component {
                             overlayContainerStyle={{backgroundColor: '#483d8b'}}
                             size="xlarge"
                             containerStyle={{borderWidth: 2,borderColor: 'black'}}
-                            onPress={() => this.props.navigation.navigate('Emergency')}
+                            onPress={() => this.props.navigation.navigate('Hakpatza')}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 200 }}
@@ -111,7 +112,7 @@ export default class HomePage extends React.Component {
               primary text="back to Login Page"
               icon="arrow-back"
               onPress={() => {
-                this.props.navigation.navigate('Login');
+                this.props.navigation.navigate('LoginTest');
               }} />
           </View>
           {/* <FlatList

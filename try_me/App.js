@@ -10,6 +10,7 @@ import ElementsPage from './Pages/ElementsPage';
 import EmergencyEvent from './Pages/EmergencyEvent';
 import LoginPageTest from './Pages/LoginPageTest';
 import { ThemeProvider } from 'react-native-material-ui';
+import HakpatzaPage from './Pages/HakpatzaPage';
 
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ const AppNavigator = createStackNavigator(
     Elements:ElementsPage,
     Emergency: EmergencyEvent,
     LoginTest: LoginPageTest,
+    Hakpatza:HakpatzaPage
   },
   {
     initialRouteName: 'LoginTest',
