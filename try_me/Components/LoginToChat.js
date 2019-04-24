@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, Text,
+  TouchableHighlight,
   TextInput,  TouchableOpacity, View,
   Button, ImageEditor,
 } from 'react-native';
@@ -10,6 +11,7 @@ import { Constants, ImagePicker, Permissions } from 'expo';
 import firebase from 'firebase';
 import { auth, initializeApp, storage } from 'firebase';
 import uuid from 'uuid';
+import styles1 from '../Pages/pageStyleTest';
 
 export default class LoginToChat extends React.Component {
   static navigationOptions = {
@@ -54,7 +56,10 @@ export default class LoginToChat extends React.Component {
   
     render() {
     return (
-      <View>
+      <View style={styles1.containerChat}>
+      <View style={styles1.Header}>
+                    <Text style={styles1.textBigLogInChat}>צא'ט המעפיל </Text>
+                </View>
         <Text style={styles.lblText}>Name:</Text>
                     <TextInput
                         style={styles.TxtInp}
@@ -73,19 +78,29 @@ export default class LoginToChat extends React.Component {
                         onChangeText={(text) => this.setState({ password: text })}
                         value={this.state.password}
                     />
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={styles.Button}
                         onPress={this.onPressLogin}>
                         <Text style={styles.textMedium}>Login</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+
+                    <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+        onPress={this.onPressLogin}>
+          <Text style={styles1.loginText}>Login</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+        onPress={()=>this.props.navigation.navigate('CreateAccount')}>
+          <Text style={styles1.loginText}>Create Account</Text>
+        </TouchableHighlight>
                     {/* <TouchableOpacity
                         style={styles.Button}
                         onPress={()=>this.props.navigation.navigate('CreateAccount')}>
                         <Text style={styles.textMedium}>Create New Account</Text>
                     </TouchableOpacity> */}
-                    <Button title="Navigate to Create Account"
+                    {/* <Button title="Navigate to Create Account"
           onPress = {()=>this.props.navigation.navigate('CreateAccount')}
-        /> 
+        />  */}
 </View>
     );
   }

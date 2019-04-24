@@ -82,14 +82,14 @@ export default StyleSheet.create({
         borderRadius: 15
     },
     TxtInp: {
-        height: 30,
+        height: 40,
         width: 300,
         borderColor: '#00008b',
         borderWidth: 2,
         margin: 15,
         fontSize:20,
         padding:5,
-        borderRadius:5
+        borderRadius:6
     },
     EmergencyTxtInp: {
         height: 50,

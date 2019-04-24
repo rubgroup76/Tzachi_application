@@ -13,6 +13,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#f1f1f1',
       },
+      containerChat: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f1f1f1',
+      },
       containerE: {
         //position: 'absolute',
         flex: 1,
@@ -41,6 +47,19 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: "serif",
     },
+
+    textBigLogInChat: {
+      // position: 'absolute',
+      // top:30,
+      // left:-200,
+      marginTop: 20,
+      alignItems: 'center',
+      fontSize: 50,
+      color: '#00008b',
+      //margin: 10,
+      fontWeight: 'bold',
+      fontFamily: "serif",
+  },
 
   picstyle:{
     alignItems: 'center',

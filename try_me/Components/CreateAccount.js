@@ -2,10 +2,12 @@ import React from 'react';
 import { Constants, ImagePicker, Permissions } from 'expo';
 import {
   StyleSheet, Text,
+  TouchableHighlight,
   TextInput, View,
   Button, ImageEditor,
 } from 'react-native';
 import firebaseSvc from '../Pages/FirebaseSvc';
+import styles1 from '../Pages/pageStyleTest';
 
 export default class CreateAccount extends React.Component{
   static navigationOptions = {
@@ -102,36 +104,51 @@ export default class CreateAccount extends React.Component{
 
   render() {
     return (
-      <View>
+      <View style={styles1.containerChat}>
+      <View style={styles1.Header}>
+                    <Text style={styles1.textBigLogInChat}>יצירת חשבון</Text>
+                </View>
         <Text style={styles.title}>Email:</Text>
         <TextInput
-          style={styles.nameInput}
+          style={styles.TxtInp}
           placeHolder="test3@gmail.com"
           onChangeText={this.onChangeTextEmail}
           value={this.state.email}
         />
         <Text style={styles.title}>Password:</Text>
         <TextInput
-          style={styles.nameInput}
+          style={styles.TxtInp}
           onChangeText={this.onChangeTextPassword}
           value={this.state.password}
         />
         <Text style={styles.title}>Name:</Text>
         <TextInput
-          style={styles.nameInput}
+          style={styles.TxtInp}
           onChangeText={this.onChangeTextName}
           value={this.state.name}
         />
-        <Button
+        {/* <Button
           title="Create Account"
           style={styles.buttonText}
           onPress={this.onPressCreate}
-        />
-        <Button
-          title="Upload Avatar Image 2"
+        /> */}
+
+<TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+        onPress={this.onPressCreate}>
+          <Text style={styles1.loginText}>Create Account</Text>
+        </TouchableHighlight>
+
+        {/* <Button
+          title="Upload Avatar Image"
           style={styles.buttonText}
           onPress={this.onImageUpload}
-        />
+        /> */}
+
+<TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+        onPress={this.onImageUpload}>
+          <Text style={styles1.loginText}>Upload Avatar Image</Text>
+        </TouchableHighlight>
+        
       </View>
     );
   }
