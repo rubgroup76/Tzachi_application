@@ -43,7 +43,7 @@ const AppNavigator = createStackNavigator(
     CreateAccount: CreateAccount,
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'LoginTest',
   }
 );
 
