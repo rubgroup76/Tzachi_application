@@ -13,6 +13,7 @@ import Chat from './Components/Chat';
 import CreateAccount from './Components/CreateAccount';
 import LoginToChat from './Components/LoginToChat';
 import { ThemeProvider } from 'react-native-material-ui';
+import HakpatzaPage from './Pages/HakpatzaPage';
 
 
 class App extends React.Component {
@@ -38,6 +39,7 @@ const AppNavigator = createStackNavigator(
     Elements:ElementsPage,
     Emergency: EmergencyEvent,
     LoginTest: LoginPageTest,
+Hakpatza:HakpatzaPage,
     Chat: Chat,
     LoginToChat:LoginToChat,
     CreateAccount: CreateAccount,
