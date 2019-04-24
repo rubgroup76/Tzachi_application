@@ -56,7 +56,7 @@ export default class LoginView extends Component {
       body: JSON.stringify({}),
     })
 
-      .then(res => res.json())
+      //.then(res => res.json())
       .then(response => {alert(token);
       })
 
@@ -137,6 +137,11 @@ btnPOST_Person = () => {
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} 
         onPress={this.btnPOST_Person}>
           <Text style={styles.loginText}>Login</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} 
+        onPress={() => this.props.navigation.navigate('LoginToChat')}>
+          <Text style={styles.loginText}>Login To Chat</Text>
         </TouchableHighlight>
 
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onClickListener('restore_password')}>
