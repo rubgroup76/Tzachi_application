@@ -40,8 +40,20 @@ export default class HomePage extends React.Component {
     this.setState({ showDialog: SDState });
   };
 
+  checkUserType(){
+    if(navigation.state.params.RoleId==0)
+    alert("1")
+      //this.props.navigation.navigate('Hakpatza',{userName:this.props.navigation.state.params.userName})
+    else
+       //this.props.navigation.navigate('HakpatzaVol',{userName:this.props.navigation.state.params.userName})
+alert("2")
+    }
+
   render() {
+    //alert(user=this.props.navigation.state.params.userName);
     return (
+      
+      
       <View style={styles.container}>
         <View style={styles.Header}>
           <Text style={styles.textBig}>צח"י</Text>
@@ -54,7 +66,7 @@ export default class HomePage extends React.Component {
                             overlayContainerStyle={{backgroundColor: '#483d8b'}}
                             size="xlarge"
                             containerStyle={{borderWidth: 2,borderColor: 'black'}}
-                            onPress={() => this.props.navigation.navigate('Hakpatza')}
+                            onPress={this.checkUserType}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 200 }}

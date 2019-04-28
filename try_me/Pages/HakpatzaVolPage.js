@@ -9,7 +9,7 @@ import {
 
 
 
-export default class Hakpatza extends Component {
+export default class HakpatzaVol extends Component {
 	constructor(){
 		super();
 		this.state={
@@ -39,13 +39,13 @@ export default class Hakpatza extends Component {
     }
 
     }
-    componentDidMount(){
-        fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/emergevents')
-      .then(response => response.json())
-       .then(response=>this.setState({events:response}))
-      .catch(error => console.warn('Error:', error.message));
+    // componentDidMount(){
+    //     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/emergevents')
+    //   .then(response => response.json())
+    //    .then(response=>this.setState({events:response}))
+    //   .catch(error => console.warn('Error:', error.message));
    
-      } 
+    //   } 
       
   // getVolToEvent() {
   //   fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/?EventName=' + this.state.PickerEventValue)
@@ -83,58 +83,24 @@ export default class Hakpatza extends Component {
   }
 
   render() {
-      if(this.state.events==null){
-          return(<View>
-              <Text>loading..</Text>
-          </View>)
-      }
-      else{
-    let eventsItems = this.state.events.map( (s, i) => {
-        return <Picker.Item key={i} value={s.EventName} label={s.EventName} />
-    });
+    //   if(this.state.events==null){
+    //       return(<View>
+    //           <Text>loading..</Text>
+    //       </View>)
+    //   }
+    //   else{
+    // let eventsItems = this.state.events.map( (s, i) => {
+    //     return <Picker.Item key={i} value={s.EventName} label={s.EventName} />
+    // });
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-         סוג אירוע
-        </Text>
-		<Picker
-		style={{width:'80%'}}
-		selectedValue={this.state.PickerEventValue}
-		onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValue})}
-		>
-        {eventsItems}
-
-		</Picker>
-
-        <Text style={styles.welcome}>
-         חומרה
-        </Text>
-        <Picker
-		style={{width:'80%'}}
-		selectedValue={this.state.PickerSeverityValue}
-		onValueChange={(itemValue,itemIndex) => this.setState({PickerSeverityValue:itemValue})}
-		>
-		<Picker.Item label="בחר את חומרת האירוע" value=""/>
-		<Picker.Item label="קלה" value="קלה" />
-		<Picker.Item label="בינונית" value="בינונית"/>
-        <Picker.Item label="גבוהה" value="גבוהה"/>
-		</Picker>
-      
-       <Text style={styles.welcome}> בחר כמות אנשים להקפצה:</Text>
-      
-       <TextInput
-                        style={styles.TxtInp}
-                        onChangeText={(text) => this.setState({ txtAmountPeople: text })}
-                        keyboardType="numeric"
-                       // value={this.state.txtAmountPeople}
-                    /> 
-		<Button title="הקפץ" onPress={this.clickme}/>
+		<Button title="הקפץ"/>
         
       </View>
     );
   }
 }
-}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

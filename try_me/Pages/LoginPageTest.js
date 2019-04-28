@@ -76,8 +76,8 @@ btnPOST_Person = () => {
       .then(response => response.json())
       .then(response => {
           if (response.Id) {
-              this.setState({ userId: response.Id, userName:response.Name});
-              this.props.navigation.navigate('Home',{userName: this.state.userName});
+              this.setState({ userId: response.Id, userName:response.Name, userRoleId:response.RoleId});
+              this.props.navigation.navigate('Home',{userName: this.state.txtID, RoleId:this.state.RoleId});
 
               
                   registerForPushNotificationsAsync()
