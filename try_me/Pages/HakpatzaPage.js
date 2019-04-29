@@ -47,29 +47,18 @@ export default class Hakpatza extends Component {
    
       } 
       
-  // getVolToEvent() {
-  //   fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/?EventName=' + this.state.PickerEventValue)
-  //     // method: 'GET',
-  //     // headers: { "Content-type": "application/json; charset=UTF-8" },
-  //     // body: JSON.stringify({}),    
-  //     .then(res => res.json())
-  //     .then(response => {
-  //       alert("good");
-  //     })
-  //     .catch(error => console.warn('Error:'));
-  // }
 
   PostActualEvent() {
-    let newEvent = {
+    let ActualEvent = {
       EventName: this.state.PickerEventValue,
       Severity: this.state.PickerSeverityValue,
       VolsAmount: this.state.txtAmountPeople,      
 
     };
-
+alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.VolsAmount)
     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actualevent', {
       method: 'POST',
-      body: JSON.stringify(newEvent),
+      body: JSON.stringify(ActualEvent),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }
@@ -77,7 +66,7 @@ export default class Hakpatza extends Component {
 
       //.then(res => res.json())
       .then(response => {
-        alert("good");
+        //alert("good");
       })
       .catch(error => console.warn('Error:'+error));
   }
@@ -99,9 +88,10 @@ export default class Hakpatza extends Component {
         </Text>
 		<Picker
 		style={{width:'80%'}}
-		selectedValue={this.state.PickerEventValue}
+	  selectedValue={this.state.PickerEventValue}
 		onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValue})}
 		>
+    <Picker.Item label="בחר את סוג האירוע" value=""/>
         {eventsItems}
 
 		</Picker>
@@ -117,7 +107,7 @@ export default class Hakpatza extends Component {
 		<Picker.Item label="בחר את חומרת האירוע" value=""/>
 		<Picker.Item label="קלה" value="קלה" />
 		<Picker.Item label="בינונית" value="בינונית"/>
-        <Picker.Item label="גבוהה" value="גבוהה"/>
+    <Picker.Item label="גבוהה" value="גבוהה"/>
 		</Picker>
       
        <Text style={styles.welcome}> בחר כמות אנשים להקפצה:</Text>

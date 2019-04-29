@@ -23,6 +23,7 @@ export default class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
+    //console.warn(props.navigation.state.params.RoleId);
     this.state = {
       itemClickedObj: null,
       showDialog: false,
@@ -40,17 +41,9 @@ export default class HomePage extends React.Component {
     this.setState({ showDialog: SDState });
   };
 
-  checkUserType(){
-    if(navigation.state.params.RoleId==0)
-    alert("1")
-      //this.props.navigation.navigate('Hakpatza',{userName:this.props.navigation.state.params.userName})
-    else
-       //this.props.navigation.navigate('HakpatzaVol',{userName:this.props.navigation.state.params.userName})
-alert("2")
-    }
 
   render() {
-    //alert(user=this.props.navigation.state.params.userName);
+    role=this.props.navigation.state.params.RoleId;
     return (
       
       
@@ -66,7 +59,12 @@ alert("2")
                             overlayContainerStyle={{backgroundColor: '#483d8b'}}
                             size="xlarge"
                             containerStyle={{borderWidth: 2,borderColor: 'black'}}
-                            onPress={this.checkUserType}
+                            onPress={() => {
+                              if(role==0)
+                              this.props.navigation.navigate('Hakpatza');
+                              else
+                              this.props.navigation.navigate('HakpatzaVol');
+                            }}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 200 }}
