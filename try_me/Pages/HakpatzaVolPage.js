@@ -1,44 +1,69 @@
 import React from 'react';
-import {
-  Notifications,
-} from 'expo';
-import {
-  Text,
-  View,
-} from 'react-native';
-
-// This refers to the function defined earlier in this guide
+import { ScrollView, StyleSheet, View, Text, Alert, ListView, Platform } from 'react-native';
 import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
+import { Notifications } from 'expo';
 
 export default class HakpatzaVol extends React.Component {
-  state = {
-    notification: {},
-  };
+ 
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    registerForPushNotificationsAsync();
-
-    // Handle notifications that are received or selected while the app
-    // is open. If the app was closed and then opened by tapping the
-    // notification (rather than just tapping the app icon to open it),
-    // this function will fire on the next tick after the app starts
-    // with the notification data.
-    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+    this.state = {
+      notification: {},
+      userID: '',
+      notificationsAvailable: [],
+      error: '',
+    };
   }
+  // componentDidMount() {
+  //   console.warn('good');
+  //   this._notificationSubscription = this._registerForPushNotifications();
+  //  // this._clearIconBadgeAsync();  
+  // }
+  // componentWillUnmount() {
+  //   this._notificationSubscription && this._notificationSubscription.remove();
+  
+    
+  // }
 
-  _handleNotification = (notification) => {
-    this.setState({notification: notification});
-  };
-
+  // //use later for push notification description
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Origin: {this.state.notification.origin}</Text>
-        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
+      <View>
+<Text>hi</Text>
+        {/* <Text>Origin: {this.state.notification.origin}</Text>
+        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
       </View>
+
     );
   }
+
+  // _registerForPushNotifications() {
+  //   // Send our push token over to our backend so we can receive notifications
+  //   // You can comment the following line out if you want to stop receiving
+  //   // a notification every time you open the app. Check out the source
+  //   // for this function in api/registerForPushNotificationsAsync.js
+  //   registerForPushNotificationsAsync();
+
+  //   // Watch for incoming notifications
+  //   this._notificationSubscription = Notifications.addListener(
+  //     this._handleNotification
+  //   );
+  // }
+  // _handleNotification = (notification) => {
+  //   alert('good')
+  //   //this.props.navigation.navigate('Notifications');
+  //   //this.setState({ notification: notification });
+  // };
 }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 15,
+//     backgroundColor: '#fff',
+//   },
+// });
 
 // import React, { Component } from 'react';
 // import styles2 from './pageStyle';

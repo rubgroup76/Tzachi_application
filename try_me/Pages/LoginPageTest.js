@@ -85,9 +85,9 @@ btnPOST_Person = () => {
                   .then(tok => {
                       this.setState({ token: tok });
                   });
-                   alert(this.state.token);
-             // this._notificationSubscription = Notifications.addListener(this._handleNotification);
-          this.updateToken(this.state.token);
+                  alert(this.state.token);
+                  this._notificationSubscription = Notifications.addListener(this._handleNotification);
+                  this.updateToken(this.state.token);
           
             }
           else
@@ -96,6 +96,11 @@ btnPOST_Person = () => {
         .catch(error => console.warn('Error:', error.message));
 
 }
+_handleNotification = (notification) => {
+  if(notification.origin=='selected'){
+    this.props.navigation.navigate('HakpatzaVol');
+  }
+};
   onClickListener = (viewId) => {
     Alert.alert("Alert", "Button pressed "+viewId);
   }
