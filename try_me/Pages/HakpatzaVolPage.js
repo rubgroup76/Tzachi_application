@@ -28,10 +28,14 @@ export default class HakpatzaVol extends React.Component {
 
   // //use later for push notification description
   render() {
-    name=this.props.navigation.state.params.evName;
+    // if(this.props.navigation.state.params.evName!=null)
+    // name=this.props.navigation.state.params.evName;
+    // else
+    // name='';
     return (
       <View>
-<Text>{name}</Text>
+{/* <Text>{name}</Text>  */}
+ <Text>aviv</Text>  
         {/* <Text>Origin: {this.state.notification.origin}</Text>
         <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
       </View>

@@ -97,9 +97,11 @@ btnPOST_Person = () => {
 
 }
 _handleNotification = (notification) => {
-  if(notification.origin=='selected'){
-    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber});
-  }
+  console.warn(notification.data)
+  // if(notification.origin=='selected'){
+  //   this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber});
+  // }
+  
 };
   onClickListener = (viewId) => {
     Alert.alert("Alert", "Button pressed "+viewId);
