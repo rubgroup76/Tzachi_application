@@ -26,7 +26,7 @@ export default class LoginView extends Component {
     static navigationOptions = {
         title: 'כניסה',
         headerStyle: {
-          backgroundColor: '#483d8b',
+          backgroundColor: '#8FD1DF',
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
@@ -77,7 +77,7 @@ btnPOST_Person = () => {
       .then(response => {
           if (response.Id) {
               this.setState({ userId: response.Id, userName:response.Name});
-              this.props.navigation.navigate('Home',{userName: this.state.userName});
+              this.props.navigation.navigate('Home',{userName: this.state.userName, RoleId:this.state.userRoleId});
 
               
                   registerForPushNotificationsAsync()
@@ -96,6 +96,11 @@ btnPOST_Person = () => {
         .catch(error => console.warn('Error:', error.message));
 
 }
+_handleNotification = (notification) => {
+  //console.warn(notification.data)
+  // if(notification.origin=='selected'){
+  //   this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber});
+   };
   onClickListener = (viewId) => {
     Alert.alert("Alert", "Button pressed "+viewId);
   }

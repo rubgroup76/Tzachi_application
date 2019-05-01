@@ -107,29 +107,36 @@ onAuthStateChanged = user => {
 
   refOn = callback => {
     this.ref
-      .limitToLast(20)
+      .limitToLast(100)
       .on('child_added', snapshot => callback(this.parse(snapshot)));
   }
 
+  
+
   parse = snapshot => {
-    const { timestamp: numberStamp, text, user } = snapshot.val();
+    const {timestamp:numberStamp, text, user } = snapshot.val();
     const { key: _id } = snapshot;
+    const { key: id } = snapshot;
     const timestamp = new Date(numberStamp);
-    const message = {_id, timestamp, text, user};
+    const message = {id, _id, timestamp, text, user};
+    alert("parse " + new Date());
     return message;
   };
-
-  get timestamp() {
-    return firebase.database.ServerValue.TIMESTAMP;
-  }
+ 
+   get timestamp() {
+     return firebase.database.ServerValue.TIMESTAMP;
+   }
 
   send = messages => {
+    // ההודעות נכנסות כל הזמן יחד, למצוא איך להכניס כל פעם רק הודעה אחת ולא את כל ההודעות יחד  
     for (let i = 0; i < messages.length; i++) {
       const { text, user } = messages[i];
       const message = {text, user, createdAt: this.timestamp, };
+      alert("send");
       this.ref.push(message);
     }
   };
+
 
   refOff() {
     this.ref.off();

@@ -6,14 +6,20 @@ import Rider from '../Components/Rider';
 import RiderDialog from '../Components/RiderDialog';
 import { Avatar, Badge, withBadge, colors } from 'react-native-elements';
 import { FloatingAction } from 'react-native-floating-action';
-
+import styles1 from '../Pages/pageStyleTest';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as lor,
+  removeOrientationListener as rol
+} from 'react-native-responsive-screen';
 
 export default class HomePage extends React.Component {
 
   static navigationOptions = {
-    title: 'דף בית                           ברוך הבא,עמיאל',
+    title: 'דף בית',
     headerStyle: {
-      backgroundColor: '#483d8b',
+      backgroundColor: '#8FD1DF',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -41,73 +47,85 @@ export default class HomePage extends React.Component {
   };
 
   render() {
+    role=this.props.navigation.state.params.RoleId;
     return (
-      <View style={styles.container}>
-        <View style={styles.Header}>
-          <Text style={styles.textBig}>צח"י</Text>
-        </View>
+      <View style={styles1.containerChat}>
+        <View style>
+                    <Text style={styles1.textBigLogInChat}>ברוכים הבאים </Text>
+                </View>
+                <Image
+                   //style={{position: 'absolute',top:130,right:-75, width:150, height:150}}
+                    //style={{justifyContent: 'center',width:150, height:150}}
+                   // style={{height: hp('30%'), width: wp('55%')}}
+                   style={styles1.imgCon}
+                        source={require('../images/HamaapilPic.jpg')} />
         <View style={styles.Content}> 
         <View style={styles.buttonMain}>
                         <Avatar
                             rounded
-                            icon={{name: 'exclamation', color: '#d3d3d3', type: 'font-awesome', size: 80 }}
-                            overlayContainerStyle={{backgroundColor: '#483d8b'}}
+                            icon={{name: 'exclamation', color: '#FFFFFF', type: 'font-awesome', size: 80 }}
+                            overlayContainerStyle={{backgroundColor: '#8FD1DF'}}
                             size="xlarge"
-                            containerStyle={{borderWidth: 2,borderColor: 'black'}}
-                            onPress={() => this.props.navigation.navigate('Hakpatza')}
+                            containerStyle={{borderWidth: 2,borderColor: '#FFFFFF'}}
+                            onPress={() => {
+                              if(role==0)
+                              this.props.navigation.navigate('Hakpatza');
+                              else
+                              this.props.navigation.navigate('HakpatzaVol');
+                            }}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 200 }}
-                            value={<Text style={{ color: '#d3d3d3', fontSize: 13 }}>הקפצה</Text>}
-                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#483d8b',borderColor: '#483d8b'}}
+                            value={<Text style={{ color: '#FFFFFF',fontWeight: 'bold', fontSize: 13 }}>הקפצה</Text>}
+                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#8FD1DF',borderColor: '#8FD1DF'}}
                             size='xlarge'
                         /> }
                         <Avatar
                             rounded
-                            icon={{ name: 'file-text', color: '#d3d3d3', type: 'font-awesome', size: 80}}
-                            overlayContainerStyle={{backgroundColor: '#483d8b'}}
+                            icon={{ name: 'file-text', color: '#FFFFFF', type: 'font-awesome', size: 80}}
+                            overlayContainerStyle={{backgroundColor: '#8FD1DF'}}
                             size="xlarge"
-                            containerStyle={{marginLeft: 20,borderWidth: 2,borderColor: 'black'}}
+                            containerStyle={{marginLeft: 20,borderWidth: 2,borderColor: '#FFFFFF'}}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 30 }}
-                            value={<Text style={{ color: '#d3d3d3', fontSize: 13 }}>תרחישי חירום</Text>}
-                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#483d8b',borderColor: '#483d8b'}}
+                            value={<Text style={{ color: '#FFFFFF',fontWeight: 'bold', fontSize: 13 }}>תרחישי חירום</Text>}
+                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#8FD1DF',borderColor: '#8FD1DF'}}
                             size='xlarge'
                         /> }
                     </View>
                     <View style={styles.buttonMainDown}>
                         <Avatar
                             rounded
-                            icon={{ name: 'weixin', color: '#d3d3d3', type: 'font-awesome', size: 80 }}
-                            overlayContainerStyle={{backgroundColor: '#483d8b', float: 'left'}}
+                            icon={{ name: 'weixin', color: '#FFFFFF', type: 'font-awesome', size: 80 }}
+                            overlayContainerStyle={{backgroundColor: '#8FD1DF', float: 'left'}}
                             size="xlarge"
-                            containerStyle={{borderWidth: 2,borderColor: 'black'}}
+                            containerStyle={{borderWidth: 2,borderColor: '#FFFFFF'}}
                             onPress={() => this.props.navigation.navigate('Elements')}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 200 }}
-                            value={<Text style={{ color: '#d3d3d3', fontSize: 13 }}>דיווחים</Text>}
-                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#483d8b',borderColor: '#483d8b'}}
+                            value={<Text style={{ color: '#FFFFFF',fontWeight: 'bold', fontSize: 13 }}>דיווחים</Text>}
+                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#8FD1DF',borderColor: '#8FD1DF'}}
                             size='xlarge'
                         /> }
                         <Avatar
                             rounded
-                            icon={{ name: 'map-o', color: '#d3d3d3', type: 'font-awesome', size: 80 }}
-                            overlayContainerStyle={{backgroundColor: '#483d8b'}}
+                            icon={{ name: 'map-o', color: '#FFFFFF', type: 'font-awesome', size: 80 }}
+                            overlayContainerStyle={{backgroundColor: '#8FD1DF'}}
                             size="xlarge"
-                            containerStyle={{marginLeft: 20,borderWidth: 2,borderColor: 'black'}}
+                            containerStyle={{marginLeft: 20,borderWidth: 2,borderColor: '#FFFFFF'}}
                             onPress={() => this.props.navigation.navigate('Location')} 
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 30 }}
-                            value={<Text style={{ color: '#d3d3d3', fontSize: 13 }}>מפה</Text>}
-                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#483d8b',borderColor: '#483d8b'}}
+                            value={<Text style={{ color: '#FFFFFF',fontWeight: 'bold', fontSize: 13 }}>מפה</Text>}
+                            badgeStyle={{ width: 90, height: 25, backgroundColor: '#8FD1DF',borderColor: '#8FD1DF'}}
                             size='xlarge'
                         /> }
                     </View>
         <View style={styles.Content}>
-          <View style={{ marginTop: 350 }}>
+          <View style={{ position: 'absolute', bottom: 0}}>
             <Button
               primary text="back to Login Page"
               icon="arrow-back"
@@ -132,23 +150,23 @@ export default class HomePage extends React.Component {
             <RiderDialog
               item={this.state.itemClickedObj}
               changeShowDialogState={this.changeShowDialogState} />}
-          <View
+          {/* <View
               style={{
                 position: 'absolute',
                 bottom: 100, 
                 width: Dimensions.get('window').width - 10,
                 flexDirection: 'row',
                 paddingLeft: 20
-              }}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Elements')}>
+              }}> */}
+              {/* <TouchableOpacity onPress={() => this.props.navigation.navigate('Elements')}>
                 <View style={{
                   width: 55,
                   height: 55,
                   borderRadius: 40,
                   justifyContent: 'center',
                   backgroundColor: 'white' 
-                }}>
-                  <Image
+                }}> */}
+                  {/* <Image
                     style={{
                       alignSelf: 'center', width: 25, height: 25,
                       borderRadius: 50
@@ -156,8 +174,8 @@ export default class HomePage extends React.Component {
                     source={require('../assets/RNElements.png')} />
                 </View>
               </TouchableOpacity>
-            </View>
-          <View
+            </View> */}
+          {/* <View
             style={{
               //flex: 1,
               position: 'absolute',
@@ -191,7 +209,7 @@ export default class HomePage extends React.Component {
             <ActionButton
               icon='photo-camera'
               onPress={() => this.props.navigation.navigate('Camera')} />
-          </View>
+          </View> */}
         </View>
         </View>
       </View>
