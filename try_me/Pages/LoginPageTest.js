@@ -26,7 +26,7 @@ export default class LoginView extends Component {
     static navigationOptions = {
         title: 'כניסה',
         headerStyle: {
-          backgroundColor: '#483d8b',
+          backgroundColor: '#8FD1DF',
         },
         headerTintColor: '#fff',
         headerTitleStyle: {

@@ -11,13 +11,13 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f1f1f1',
+        backgroundColor: '#FFFFFF',
       },
       containerChat: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f1f1f1',
+        backgroundColor: '#FFFFFF',
       },
       containerE: {
         //position: 'absolute',
@@ -30,7 +30,10 @@ export default StyleSheet.create({
       Header: {
         flex: 2
     },
-    
+    imgCon:{
+      width:'100%',
+      flex:2,
+  },
     lblText:{
         fontSize:12,
         color: '#00008b'
@@ -42,21 +45,20 @@ export default StyleSheet.create({
         marginTop: 20,
         alignItems: 'center',
         fontSize: 50,
-        color: '#00008b',
+        color: '#BED68C',
         margin: 10,
         fontWeight: 'bold',
-        //fontFamily: "serif",
+        fontFamily: "serif",
     },
 
     textBigLogInChat: {
       // position: 'absolute',
       // top:30,
       // left:-200,
-      marginTop: 20,
+      //marginTop: 10,
       alignItems: 'center',
       fontSize: 50,
-      color: '#00008b',
-      //margin: 10,
+      color: '#BED68C',
       fontWeight: 'bold',
       fontFamily: "serif",
   },
@@ -102,6 +104,8 @@ export default StyleSheet.create({
           marginLeft:16,
           borderBottomColor: '#FFFFFF',
           flex:1,
+          borderBottomColor: '#000000',
+       borderBottomWidth: 1,
       },
       inputIcon:{
         width:30,
@@ -117,9 +121,19 @@ export default StyleSheet.create({
         marginBottom:20,
         width:250,
         borderRadius:30,
+        //color: '#BED68C',
       },
       loginButton: {
-        backgroundColor: "#483d8b",
+        //backgroundColor: "#483d8b",
+        backgroundColor: '#8FD1DF',
+      },
+      createAccountButton:{
+        //ירוק
+        backgroundColor: "#8FD1DF",
+      },
+      LoginToChatButton:{
+        //תכלת
+        backgroundColor: "#8FD1DF",
       },
       loginText: {
         color: 'white',

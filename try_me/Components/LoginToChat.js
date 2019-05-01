@@ -2,7 +2,7 @@ import React from 'react';
 import {
   StyleSheet, Text,
   TouchableHighlight,
-  TextInput,  TouchableOpacity, View,
+  TextInput, Image,  TouchableOpacity, View,
   Button, ImageEditor,
 } from 'react-native';
 import firebaseSvc from '../Pages/FirebaseSvc';
@@ -15,13 +15,20 @@ import styles1 from '../Pages/pageStyleTest';
 
 export default class LoginToChat extends React.Component {
   static navigationOptions = {
-    title: 'Scv Chatter',
+    title: 'התחברות לצאט',
+        headerStyle: {
+          backgroundColor: '#8FD1DF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
   };  
   
   state = {
-        name: 'Enter You Name',
-        email: 'Your_email@gmail.com',
-        password: 'Enter your Password',
+        name: 'Nella',
+        email: 'Nella@gmail.com',
+        password: '123456',
         avatar:'',
       };
       // add login method to handle user press Login button
@@ -57,16 +64,57 @@ export default class LoginToChat extends React.Component {
     render() {
     return (
       <View style={styles1.containerChat}>
-      <View style={styles1.Header}>
+      <View style>
                     <Text style={styles1.textBigLogInChat}>צא'ט המעפיל </Text>
                 </View>
-        <Text style={styles.lblText}>Name:</Text>
+        {/* <Text style={styles.lblText}>Name:</Text>
                     <TextInput
                         style={styles.TxtInp}
                         onChangeText={(text) => this.setState({ name: text })}
                         value={this.state.name}
-                    />
-      <Text style={styles.lblText}>Email:</Text>
+                    /> */}
+
+<View style={styles1.inputContainer}>
+          <Image style={styles1.inputIcon} source={{uri: 'https://png.icons8.com/person'}}/>
+          <TextInput style={styles1.inputs}
+              placeholder="Name"
+              // keyboardType="numeric"
+              underlineColorAndroid='transparent'
+              onChangeText={(text) => this.setState({ name: text })}
+              //value={this.state.name}
+              // onChangeText={(id) => this.setState({txtID})}
+              />
+        </View>
+
+        <View style={styles1.inputContainer}>
+          <Image style={styles1.inputIcon} source={{uri: 'https://img.icons8.com/ios/50/000000/new-post.png'}}/>
+          <TextInput style={styles1.inputs}
+              placeholder="Email"
+              keyboardType="email-address"
+              underlineColorAndroid='transparent'
+              onChangeText={(text) => this.setState({ email: text })}
+              //value={this.state.email}
+              // onChangeText={(id) => this.setState({txtID})}
+              />
+        </View>
+
+        <View style={styles1.inputContainer}>
+          <Image style={styles1.inputIcon} source={{uri: 'https://png.icons8.com/key'}}/>
+          <TextInput style={styles1.inputs}
+              placeholder="Password"
+              secureTextEntry={true}
+              // keyboardType="numeric"
+              underlineColorAndroid='transparent'
+              onChangeText={(text) => this.setState({ password: text })}
+              //value={this.state.password}
+              // onChangeText={(id) => this.setState({txtID})}
+              />
+        </View>
+
+
+
+
+      {/* <Text style={styles.lblText}>Email:</Text>
                     <TextInput
                         style={styles.TxtInp}
                         onChangeText={(text) => this.setState({ email: text })}
@@ -77,19 +125,19 @@ export default class LoginToChat extends React.Component {
                         style={styles.TxtInp}
                         onChangeText={(text) => this.setState({ password: text })}
                         value={this.state.password}
-                    />
+                    /> */}
                     {/* <TouchableOpacity
                         style={styles.Button}
                         onPress={this.onPressLogin}>
                         <Text style={styles.textMedium}>Login</Text>
                     </TouchableOpacity> */}
 
-                    <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+                    <TouchableHighlight style={[styles1.buttonContainer, styles1.LoginToChatButton]} 
         onPress={this.onPressLogin}>
           <Text style={styles1.loginText}>Login</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+        <TouchableHighlight style={[styles1.buttonContainer, styles1.createAccountButton]} 
         onPress={()=>this.props.navigation.navigate('CreateAccount')}>
           <Text style={styles1.loginText}>Create Account</Text>
         </TouchableHighlight>

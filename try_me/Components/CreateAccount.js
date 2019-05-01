@@ -3,7 +3,7 @@ import { Constants, ImagePicker, Permissions } from 'expo';
 import {
   StyleSheet, Text,
   TouchableHighlight,
-  TextInput, View,
+  TextInput,Image, View,
   Button, ImageEditor,
 } from 'react-native';
 import firebaseSvc from '../Pages/FirebaseSvc';
@@ -11,13 +11,20 @@ import styles1 from '../Pages/pageStyleTest';
 
 export default class CreateAccount extends React.Component{
   static navigationOptions = {
-    title: 'Scv Chatter',
+    title: 'יצירת חשבון',
+        headerStyle: {
+          backgroundColor: '#8FD1DF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
   };
 
   state = {
-    name: 'no name',
-    email: 'test3@gmail.com',
-    password: 'test123',
+    name: '',
+    email: '',
+    password: '',
     avatar: '',
   };
 
@@ -108,41 +115,42 @@ export default class CreateAccount extends React.Component{
       <View style={styles1.Header}>
                     <Text style={styles1.textBigLogInChat}>יצירת חשבון</Text>
                 </View>
-        <Text style={styles.title}>Email:</Text>
-        <TextInput
-          style={styles.TxtInp}
-          placeHolder="test3@gmail.com"
-          onChangeText={this.onChangeTextEmail}
-          value={this.state.email}
-        />
-        <Text style={styles.title}>Password:</Text>
-        <TextInput
-          style={styles.TxtInp}
-          onChangeText={this.onChangeTextPassword}
-          value={this.state.password}
-        />
-        <Text style={styles.title}>Name:</Text>
-        <TextInput
-          style={styles.TxtInp}
-          onChangeText={this.onChangeTextName}
-          value={this.state.name}
-        />
-        {/* <Button
-          title="Create Account"
-          style={styles.buttonText}
-          onPress={this.onPressCreate}
-        /> */}
+
+<View style={styles1.inputContainer}>
+<Image style={styles1.inputIcon} source={{uri: 'https://img.icons8.com/ios/50/000000/new-post.png'}}/>
+          <TextInput style={styles1.inputs}
+              placeholder="Email"
+              keyboardType="email-address"
+              underlineColorAndroid='transparent'
+              onChangeText={this.onChangeTextEmail}
+              //value={this.state.email}
+              />
+        </View>
+
+        <View style={styles1.inputContainer}>
+        <Image style={styles1.inputIcon} source={{uri: 'https://png.icons8.com/key'}}/>
+          <TextInput style={styles1.inputs}
+              placeholder="Password"
+              underlineColorAndroid='transparent'
+              onChangeText={this.onChangeTextPassword}
+              //value={this.state.password}
+              />
+        </View>
+
+<View style={styles1.inputContainer}>
+<Image style={styles1.inputIcon} source={{uri: 'https://png.icons8.com/person'}}/>
+          <TextInput style={styles1.inputs}
+              placeholder="Name"
+              underlineColorAndroid='transparent'
+              onChangeText={this.onChangeTextName}
+              //value={this.state.name}
+              />
+        </View>
 
 <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
         onPress={this.onPressCreate}>
           <Text style={styles1.loginText}>Create Account</Text>
         </TouchableHighlight>
-
-        {/* <Button
-          title="Upload Avatar Image"
-          style={styles.buttonText}
-          onPress={this.onImageUpload}
-        /> */}
 
 <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
         onPress={this.onImageUpload}>
