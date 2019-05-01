@@ -97,10 +97,12 @@ btnPOST_Person = () => {
 
 }
 _handleNotification = (notification) => {
-  console.warn(notification.data)
-  // if(notification.origin=='selected'){
-  //   this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber});
-  // }
+  if(notification.origin=='selected'){
+    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber, id:notification.data.id, token:notification.data.token, team:notification.data.team});
+  }
+  else if(notification.origin=='received'){
+    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber, id:notification.data.id, token:notification.data.token, team:notification.data.team});
+  }
   
 };
   onClickListener = (viewId) => {

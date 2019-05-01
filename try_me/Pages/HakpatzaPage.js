@@ -81,6 +81,7 @@ alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.Vol
     let eventsItems = this.state.events.map( (s, i) => {
         return <Picker.Item key={i} value={s.EventName} label={s.EventName} />
     });
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -111,7 +112,6 @@ alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.Vol
 		</Picker>
       
        <Text style={styles.welcome}> בחר כמות אנשים להקפצה:</Text>
-      
        <TextInput
                         style={styles.TxtInp}
                         onChangeText={(text) => this.setState({ txtAmountPeople: text })}
