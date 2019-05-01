@@ -28,6 +28,7 @@ export default class Hakpatza extends Component {
 		
 	};
 	clickme=()=>{
+    
 		var data = this.state.PickerValue;
 		if(data==""){
 			alert("Please Select an Option");
@@ -46,40 +47,29 @@ export default class Hakpatza extends Component {
    
       } 
       
-  // getVolToEvent() {
-  //   fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/?EventName=' + this.state.PickerEventValue)
-  //     // method: 'GET',
-  //     // headers: { "Content-type": "application/json; charset=UTF-8" },
-  //     // body: JSON.stringify({}),    
-  //     .then(res => res.json())
-  //     .then(response => {
-  //       alert("good");
-  //     })
-  //     .catch(error => console.warn('Error:'));
-  // }
 
-  // PostActualEvent() {
-  //   let newEvent = {
-  //     EventName: this.state.PickerEventValue,
-  //     Severity: this.state.PickerSeverityValue,
-  //     VolsAmount: this.state.txtAmountPeople,      
+  PostActualEvent() {
+    let ActualEvent = {
+      EventName: this.state.PickerEventValue,
+      Severity: this.state.PickerSeverityValue,
+      VolsAmount: this.state.txtAmountPeople,      
 
-  //   };
+    };
+alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.VolsAmount)
+    fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actualevent', {
+      method: 'POST',
+      body: JSON.stringify(ActualEvent),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
 
-  //   fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers', {
-  //     method: 'POST',
-  //     body: JSON.stringify(newEvent),
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     }
-  //   })
-
-  //     .then(res => res.json())
-  //     .then(response => {
-  //       alert("good");
-  //     })
-  //     .catch(error => console.warn('Error:'));
-  // }
+      //.then(res => res.json())
+      .then(response => {
+        //alert("good");
+      })
+      .catch(error => console.warn('Error:'+error));
+  }
 
   render() {
       if(this.state.events==null){
@@ -98,9 +88,10 @@ export default class Hakpatza extends Component {
         </Text>
 		<Picker
 		style={{width:'80%'}}
-		selectedValue={this.state.PickerEventValue}
+	  selectedValue={this.state.PickerEventValue}
 		onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValue})}
 		>
+    <Picker.Item label="בחר את סוג האירוע" value=""/>
         {eventsItems}
 
 		</Picker>
@@ -116,7 +107,7 @@ export default class Hakpatza extends Component {
 		<Picker.Item label="בחר את חומרת האירוע" value=""/>
 		<Picker.Item label="קלה" value="קלה" />
 		<Picker.Item label="בינונית" value="בינונית"/>
-        <Picker.Item label="גבוהה" value="גבוהה"/>
+    <Picker.Item label="גבוהה" value="גבוהה"/>
 		</Picker>
       
        <Text style={styles.welcome}> בחר כמות אנשים להקפצה:</Text>

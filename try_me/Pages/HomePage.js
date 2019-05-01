@@ -29,6 +29,7 @@ export default class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
+    //console.warn(props.navigation.state.params.RoleId);
     this.state = {
       itemClickedObj: null,
       showDialog: false,
@@ -45,6 +46,7 @@ export default class HomePage extends React.Component {
   changeShowDialogState = (SDState) => {
     this.setState({ showDialog: SDState });
   };
+
 
   render() {
     role=this.props.navigation.state.params.RoleId;
