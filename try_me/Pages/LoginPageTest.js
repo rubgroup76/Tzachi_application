@@ -117,7 +117,7 @@ _handleNotification = (notification) => {
                    //style={{position: 'absolute',top:130,right:-75, width:150, height:150}}
                     //style={{justifyContent: 'center',width:150, height:150}}
                    // style={{height: hp('30%'), width: wp('55%')}}
-                   style={{marginBottom: 40, marginTop:10, height: hp('20%'),width: wp('40%') }}
+                   style={{position: 'absolute', top:'20%', height: hp('20%'),width: wp('40%') }}
                         source={require('../assets/hamaapilLogo.png')} />
         <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/person'}}/>
