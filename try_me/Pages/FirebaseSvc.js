@@ -119,7 +119,7 @@ onAuthStateChanged = user => {
     const { key: id } = snapshot;
     const timestamp = new Date(numberStamp);
     const message = {id, _id, timestamp, text, user};
-    alert("parse " + new Date());
+    //alert("parse " + new Date());
     return message;
   };
  

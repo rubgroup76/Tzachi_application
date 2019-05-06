@@ -11,36 +11,49 @@ export default class HakpatzaVol extends React.Component {
 
     this.state = {
       notification: {},
-      userID: '',
+      x: 0,
       notificationsAvailable: [],
-      error: '',
+      y: 0,
     };
   }
 
   volApproves(){
-    x="34.98571";
-    y="32.37821";
-    VolApproves={
-      Id:id,
-      Team:team,
-      EventName:name,
-      EventNum:num,
-      X_Location:x,
-      Y_Location:y,
-      Token:token
-    }
-    fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volapproves', {
-      method: 'POST',
-      body: JSON.stringify(VolApproves),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-       .then(response => {
-        response.json;
-      })
-      .then(alert("אישרת הגעה"))
-      .catch(error => console.warn('Error:'+error));
+    pos=null;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+       this.setState({x:position.coords.longitude, y:position.coords.latitude});
+        const output =
+          'latitude=' + position.coords.latitude +
+          '\nlongitude=' + position.coords.longitude +
+          '\naltitude=' + position.coords.altitude +
+          '\nheading=' + position.coords.heading +
+          '\nspeed=' + position.coords.speed
+
+          alert(position.coords.longitude);
+      });
+    //x="34.98571";
+    //y="32.37821";
+    // VolApproves={
+    //   Id:id,
+    //   Team:team,
+    //   EventName:name,
+    //   EventNum:num,
+    //   X_Location:this.state.x,
+    //   Y_Location:this.state.y,
+    //   Token:token
+    // }
+    // fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volapproves', {
+    //   method: 'POST',
+    //   body: JSON.stringify(VolApproves),
+    //   headers: {
+    //     "Content-type": "application/json; charset=UTF-8"
+    //   }
+    // })
+    //    .then(response => {
+    //     response.json;
+    //   })
+    //   .then(alert("אישרת הגעה"))
+    //   .catch(error => console.warn('Error:'+error));
   }
   render() {
 
