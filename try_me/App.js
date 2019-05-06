@@ -15,6 +15,7 @@ import LoginToChat from './Components/LoginToChat';
 import { ThemeProvider } from 'react-native-material-ui';
 import HakpatzaPage from './Pages/HakpatzaPage';
 import HakpatzaVolPage from './Pages/HakpatzaVolPage';
+import EmergencyScenarioPage from './Pages/EmergencyScenarioPage';
 
 class App extends React.Component {
 
@@ -44,6 +45,7 @@ const AppNavigator = createStackNavigator(
     Chat: Chat,
     LoginToChat:LoginToChat,
     CreateAccount: CreateAccount,
+    EmergencyScenario: EmergencyScenarioPage,
   },
   {
     initialRouteName: 'LoginTest',

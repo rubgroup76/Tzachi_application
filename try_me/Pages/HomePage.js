@@ -88,6 +88,7 @@ export default class HomePage extends React.Component {
                             overlayContainerStyle={{backgroundColor: '#8FD1DF'}}
                             size="xlarge"
                             containerStyle={{marginLeft: 20,borderWidth: 2,borderColor: '#FFFFFF'}}
+                            onPress={() => this.props.navigation.navigate('EmergencyScenario')}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 30 }}
@@ -103,11 +104,11 @@ export default class HomePage extends React.Component {
                             overlayContainerStyle={{backgroundColor: '#8FD1DF', float: 'left'}}
                             size="xlarge"
                             containerStyle={{borderWidth: 2,borderColor: '#FFFFFF'}}
-                            onPress={() => this.props.navigation.navigate('Elements')}
+                            onPress={() => this.props.navigation.navigate('LoginToChat')}
                         />
                         { <Badge
                             containerStyle={{ position: 'absolute', top: 110, right: 200 }}
-                            value={<Text style={{ color: '#FFFFFF',fontWeight: 'bold', fontSize: 13 }}>דיווחים</Text>}
+                            value={<Text style={{ color: '#FFFFFF',fontWeight: 'bold', fontSize: 13 }}>צ'אט</Text>}
                             badgeStyle={{ width: 90, height: 25, backgroundColor: '#8FD1DF',borderColor: '#8FD1DF'}}
                             size='xlarge'
                         /> }
