@@ -17,25 +17,20 @@ export default class Hakpatza extends Component {
             events:	''	
         };
         this.state = {
-            txtAmountPeople:"reut",
-            // txtPass: '123456',
-            // userId:"",
-            // userName:"",
-            // token:"",
-            // userCode:0
+            txtAmountPeople:1,
+            txtX: 34.98571,
+            txtY: 32.37821,
         }
       
 		
 	};
-	clickme=()=>{
-    
+	clickMe=()=>{ 
 		var data = this.state.PickerValue;
 		if(data==""){
 			alert("Please Select an Option");
     }
     else{
-      this.PostActualEvent();
-			//alert(data);
+      this.postActualEvent();
     }
 
     }
@@ -48,14 +43,16 @@ export default class Hakpatza extends Component {
       } 
       
 
-  PostActualEvent() {
+  postActualEvent() {
     let ActualEvent = {
       EventName: this.state.PickerEventValue,
       Severity: this.state.PickerSeverityValue,
       VolsAmount: this.state.txtAmountPeople,      
-
+      ELocation_X:this.state.txtX,
+      ELocation_Y:this.state.txtY,
     };
-alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.VolsAmount)
+    alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.VolsAmount)
+    
     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actualevent', {
       method: 'POST',
       body: JSON.stringify(ActualEvent),
@@ -118,7 +115,21 @@ alert(this.state.PickerEventValue+" "+ ActualEvent.Severity+" "+ ActualEvent.Vol
                         keyboardType="numeric"
                        // value={this.state.txtAmountPeople}
                     /> 
-		<Button title="הקפץ" onPress={this.clickme}/>
+                           <Text style={styles.welcome}> X:</Text>
+       <TextInput
+                        style={styles.TxtInp}
+                        onChangeText={(text) => this.setState({ txtX: text })}
+                        keyboardType="numeric"
+                       // value={this.state.txtAmountPeople}
+                    /> 
+                           <Text style={styles.welcome}> Y:</Text>
+       <TextInput
+                        style={styles.TxtInp}
+                        onChangeText={(text) => this.setState({ txtY: text })}
+                        keyboardType="numeric"
+                       // value={this.state.txtAmountPeople}
+                    /> 
+		<Button title="הקפץ" onPress={this.clickMe}/>
         
       </View>
     );

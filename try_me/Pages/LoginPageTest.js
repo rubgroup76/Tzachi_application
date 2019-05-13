@@ -5,7 +5,6 @@ import {
   listenOrientationChange as lor,
   removeOrientationListener as rol
 } from 'react-native-responsive-screen';
-
 import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
 import { Notifications } from 'expo';
 
@@ -20,7 +19,6 @@ import {
   Alert,
 } from 'react-native';
 import styles from './pageStyleTest';
-
 export default class LoginView extends Component {
 
     static navigationOptions = {
@@ -47,6 +45,7 @@ export default class LoginView extends Component {
       userCode:0
     }
   }
+
   updateToken(token)
   {   
     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/token/?User='+this.state.txtID+"&Token="+token, {
@@ -98,10 +97,10 @@ btnPOST_Person = () => {
 }
 _handleNotification = (notification) => {
   if(notification.origin=='selected'){
-    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber, id:notification.data.id, token:notification.data.token, team:notification.data.team});
+    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber, id:notification.data.id, token:notification.data.token, team:notification.data.team, x_event:notification.data.x_event, y_event:notification.data.y_event});
   }
   else if(notification.origin=='received'){
-    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber, id:notification.data.id, token:notification.data.token, team:notification.data.team});
+    this.props.navigation.navigate('HakpatzaVol',{evName:notification.data.eventName, evNum:notification.data.eventNumber, id:notification.data.id, token:notification.data.token, team:notification.data.team, x_event:notification.data.x_event, y_event:notification.data.y_event});
   }
   
 };
