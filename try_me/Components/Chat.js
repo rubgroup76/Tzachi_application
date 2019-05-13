@@ -88,7 +88,7 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    alert("componentDidMount");
+    //alert("componentDidMount");
     firebaseSvc.refOn(message => 
       this.setState(previousState => ({
         //messages: GiftedChat.append(previousState.messages, message),
@@ -108,7 +108,7 @@ class Chat extends React.Component {
   }
 
   componentWillUnmount() {
-    alert("componentWillUnmount");
+    //alert("componentWillUnmount");
     firebaseSvc.refOff();
   }
 }

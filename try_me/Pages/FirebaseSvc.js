@@ -119,7 +119,7 @@ onAuthStateChanged = user => {
     const { key: id } = snapshot;
     const timestamp = new Date(numberStamp);
     const message = {id, _id, timestamp, text, user};
-    alert("parse " + new Date());
+    //alert("parse " + new Date());
     return message;
   };
  
@@ -132,7 +132,7 @@ onAuthStateChanged = user => {
     for (let i = 0; i < messages.length; i++) {
       const { text, user } = messages[i];
       const message = {text, user, createdAt: this.timestamp, };
-      alert("send");
+      //alert("send");
       this.ref.push(message);
     }
   };

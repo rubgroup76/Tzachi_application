@@ -56,6 +56,7 @@ export default StyleSheet.create({
       // top:30,
       // left:-200,
       //marginTop: 10,
+      top:0,
       alignItems: 'center',
       fontSize: 50,
       color: '#BED68C',
@@ -129,7 +130,7 @@ export default StyleSheet.create({
       },
       createAccountButton:{
         //ירוק
-        backgroundColor: "#8FD1DF",
+        backgroundColor: "#BED68C",
       },
       LoginToChatButton:{
         //תכלת

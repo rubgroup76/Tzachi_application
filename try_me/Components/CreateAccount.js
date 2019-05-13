@@ -152,10 +152,10 @@ export default class CreateAccount extends React.Component{
           <Text style={styles1.loginText}>Create Account</Text>
         </TouchableHighlight>
 
-<TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+{/* <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
         onPress={this.onImageUpload}>
           <Text style={styles1.loginText}>Upload Avatar Image</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         
       </View>
     );

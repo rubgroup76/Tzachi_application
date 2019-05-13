@@ -73,7 +73,7 @@ export default class LoginToChat extends React.Component {
                         onChangeText={(text) => this.setState({ name: text })}
                         value={this.state.name}
                     /> */}
-
+<View style={styles.ContentLogInChat}>
 <View style={styles1.inputContainer}>
           <Image style={styles1.inputIcon} source={{uri: 'https://png.icons8.com/person'}}/>
           <TextInput style={styles1.inputs}
@@ -110,10 +110,6 @@ export default class LoginToChat extends React.Component {
               // onChangeText={(id) => this.setState({txtID})}
               />
         </View>
-
-
-
-
       {/* <Text style={styles.lblText}>Email:</Text>
                     <TextInput
                         style={styles.TxtInp}
@@ -149,6 +145,7 @@ export default class LoginToChat extends React.Component {
                     {/* <Button title="Navigate to Create Account"
           onPress = {()=>this.props.navigation.navigate('CreateAccount')}
         />  */}
+        </View>
 </View>
     );
   }

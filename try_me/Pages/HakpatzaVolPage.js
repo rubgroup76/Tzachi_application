@@ -12,9 +12,9 @@ export default class HakpatzaVol extends React.Component {
 
     this.state = {
       notification: {},
-      userID: '',
+      x: 0,
       notificationsAvailable: [],
-      error: '',
+      y: 0,
     };
   }
   // componentWillMount(){

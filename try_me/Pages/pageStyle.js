@@ -23,6 +23,12 @@ export default StyleSheet.create({
         //justifyContent: 'center',
         marginTop: 100
     },
+    ContentLogInChat: {
+        flex: 7,
+        alignItems: 'center',
+        //justifyContent: 'center',
+        marginTop: 150,
+    },
     ContentLocation: {
         flex: 5,
         alignItems: 'center',
