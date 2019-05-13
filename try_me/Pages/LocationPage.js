@@ -4,13 +4,14 @@ import styles from './pageStyle';
 import { Button, ActionButton } from 'react-native-material-ui';
 import { MapView } from 'expo';
 const { Marker } = MapView;
+import styles1 from '../Pages/pageStyleTest';
 
 export default class LocationPage extends React.Component {
   
   static navigationOptions = {
     title: 'מפת הקיבוץ',
     headerStyle: {
-      backgroundColor: '#483d8b',
+      backgroundColor: '#8FD1DF',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -50,9 +51,9 @@ export default class LocationPage extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles1.containerChat}>
         <View style={styles.Header}>
-          <Text style={styles.textBigLocation}>ציוד על המפה</Text>
+          <Text style={styles1.textBigLogInChat}>ציוד על המפה</Text>
           {/* <Image
             style={{ alignSelf: 'center', width: 80, height: 80 }}
             source={require('../assets/icon.png')} /> */}
@@ -80,7 +81,7 @@ export default class LocationPage extends React.Component {
                   longitude: this.state.longitude
                 }}
                 title='קיבוץ המעפיל'
-                description='שלום לך !'
+                description='מטפה'
                 image={require('../assets/LocationRed.png')}
               />
               <Marker
