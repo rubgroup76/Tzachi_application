@@ -41,13 +41,7 @@ export default class HakpatzaVol extends React.Component {
   //     console.log(s.name)
   //   })
   // }
-  volApproves1(){
-alert(geolib.getDistance(
-                {lat: 70.3369224, lon: 30.3411273},
-                {lat: 59.8939528, lon: 10.6450348}
-            ))
-           //console.log(distance)
-  }
+
   volApproves(){
     x=0;
     y=0;
