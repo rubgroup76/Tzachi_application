@@ -23,15 +23,16 @@ export default class EmergencyScenarioPage extends React.Component {
             ActionNu:'',
             EventNa: '',
             ActionDe:'',
-            PickerValue:'',
+            PickerEventValue:'',
+            ShowEvents: '',
         }
     } 
 
     componentDidMount(){
-        fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actionInEvent')
-      .then(response => response.json())
-       .then(response=>this.setState({Scenario:response}))
-      .catch(error => console.warn('Error:', error.message));
+      //   fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actionInEvent')
+      // .then(response => response.json())
+      //  .then(response=>this.setState({Scenario:response}))
+      // .catch(error => console.warn('Error:', error.message));
    
       fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/emergevents')
       .then(response => response.json())
@@ -41,35 +42,56 @@ export default class EmergencyScenarioPage extends React.Component {
       } 
 
       clickme=()=>{
-        var data = this.state.PickerValue;
+        var data = this.state.PickerEventValue;
         if(data==""){
-          alert("Please Select an Option");
+          alert("לא נבחר סוג אירוע להצגה");
         }
         else{
-          this.PostActualEvent();
+          //this.ShowTheEvents();
+          this.props.navigation.navigate('ShowEmegancy',{event: this.state.PickerEventValue});
         }
     
         }
 
+        ShowTheEvents() {
+          // var DataARR = this.state.Scenario.map((s,i)=>{
+          //   if(s.EventName==this.state.PickerEventValue)
+          //   {
+          //     return s;
+          //   }
+          // });
+          var DataARR = [];
+          this.state.Scenario.map((s,i)=>{
+            if(s.EventName==this.state.PickerEventValue)
+            {
+              DataARR.push(s);
+            }
+          });
+          // DataARR.map((s,i)=>{
+          //    alert(s.EventName + " " + s.ActionNumber);
+          //   //return <View><Text>s.EventName</Text></View>
+          // });
+        }
+
       render(){
-        if(this.state.Scenario==null){
+        if(this.state.events==null){
             return(<View>
                 <Text>loading..</Text>
             </View>)
         }
         else{
        let eventsItems = this.state.events.map( (s, i) => {
-           return <Picker.Item key={i} value={s.EventName} label={s.EventName} />
+           return <Picker.Item key={i} value={s.EventName} label={s.EventName} color='#8FD1DF' />
       }
       );
 
       return(
         <View style={styles.container}>
- <Text style={styles.welcome}>
+ <Text style={styles.textBigLogInChat}>
          סוג אירוע
         </Text>
         <Picker
-style={{width:'80%'}}
+    style={{width:'80%'}}
 selectedValue={this.state.PickerEventValue}
 onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValue})}
 >
@@ -77,15 +99,25 @@ onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValu
     {eventsItems}
 
 </Picker>
- <Button title="הצג" onPress={this.clickme}/>
+ <Button style={{color:'#BED68C'}} title="הצג" onPress={this.clickme}/>
+ {/* <Button title="הצג" onPress ={()=>this.props.navigation.navigate('ShowEmegancy',{event: this.state.PickerEventValue})}/> */}
         </View>
-
-
 
       );
 
 
       }
+      // if(this.ShowEvents==null ){
+      //   return(<View>
+      //     <Text>No Events To Show</Text>
+      // </View>)
+      // }
+      // else{
+      //   let ShowThem = this.state.ShowEvents.map( (s, i) => {
+      //      return<View><Text>s.EventName</Text></View>
+      // }
+      // );
+      // }
     }
 
 }
@@ -95,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
   },
   welcome: {
     fontSize: 18,
@@ -117,5 +149,17 @@ const styles = StyleSheet.create({
     padding:6,
     borderRadius:5,
     textAlign:'center',
+},
+textBigLogInChat: {
+  // position: 'absolute',
+  // top:30,
+  // left:-200,
+  //marginTop: 10,
+  top:0,
+  alignItems: 'center',
+  fontSize: 40,
+  color: '#BED68C',
+  fontWeight: 'bold',
+  fontFamily: "serif",
 },
 });

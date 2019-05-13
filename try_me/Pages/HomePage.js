@@ -101,7 +101,7 @@ export default class HomePage extends React.Component {
                         <Avatar
                             rounded
                             icon={{ name: 'weixin', color: '#FFFFFF', type: 'font-awesome', size: 80 }}
-                            overlayContainerStyle={{backgroundColor: '#8FD1DF', float: 'left'}}
+                            overlayContainerStyle={{backgroundColor: '#8FD1DF'}}
                             size="xlarge"
                             containerStyle={{borderWidth: 2,borderColor: '#FFFFFF'}}
                             onPress={() => this.props.navigation.navigate('LoginToChat')}

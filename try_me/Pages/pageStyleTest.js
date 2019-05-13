@@ -130,7 +130,7 @@ export default StyleSheet.create({
       },
       createAccountButton:{
         //ירוק
-        backgroundColor: "#8FD1DF",
+        backgroundColor: "#BED68C",
       },
       LoginToChatButton:{
         //תכלת

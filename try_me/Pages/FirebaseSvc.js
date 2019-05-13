@@ -132,7 +132,7 @@ onAuthStateChanged = user => {
     for (let i = 0; i < messages.length; i++) {
       const { text, user } = messages[i];
       const message = {text, user, createdAt: this.timestamp, };
-      alert("send");
+      //alert("send");
       this.ref.push(message);
     }
   };
