@@ -17,6 +17,7 @@ import HakpatzaPage from './Pages/HakpatzaPage';
 import HakpatzaVolPage from './Pages/HakpatzaVolPage';
 import EmergencyScenarioPage from './Pages/EmergencyScenarioPage';
 import ShowEmergancyPage from './Pages/ShowEmergancyPage';
+//import ActualHakpatza from './Pages/ActualHakpatzaPage';
 
 class App extends React.Component {
 
@@ -48,6 +49,7 @@ const AppNavigator = createStackNavigator(
     CreateAccount: CreateAccount,
     EmergencyScenario: EmergencyScenarioPage,
     ShowEmegancy: ShowEmergancyPage,
+    //ActualHakpatza: ActualHakpatzaPage
   },
   {
     initialRouteName: 'LoginTest',

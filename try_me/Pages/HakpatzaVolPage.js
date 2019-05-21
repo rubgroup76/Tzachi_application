@@ -82,8 +82,9 @@ export default class HakpatzaVol extends React.Component {
           }
         })
            .then(response => {
-            response.json;
-          })
+            response.json;})
+            .then(alert("good"))
+          
           .catch(error => console.warn('Error:'+error));
       },
       (error) => alert("err:"+error.message),
