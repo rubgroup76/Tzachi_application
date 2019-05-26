@@ -52,7 +52,7 @@ const AppNavigator = createStackNavigator(
     //ActualHakpatza: ActualHakpatzaPage
   },
   {
-    initialRouteName: 'LoginTest',
+    initialRouteName: 'Hakpatza',
   }
 );
 

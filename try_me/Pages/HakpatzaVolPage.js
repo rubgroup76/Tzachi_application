@@ -3,8 +3,8 @@ import { ScrollView, StyleSheet, TouchableHighlight, View, Text, Alert, ListView
 import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
 import { Notifications } from 'expo';
 import styles from './pageStyleTest';
-//import Geocoder from 'react-native-geocoding';
 import geolib from 'geolib'
+
 export default class HakpatzaVol extends React.Component {
  
   constructor(props) {
@@ -17,30 +17,7 @@ export default class HakpatzaVol extends React.Component {
       y: 0,
     };
   }
-  // componentWillMount(){
-  //   geolib.getDistance(
-  //     {latitude: 51.5103, longitude: 7.49347},
-  //     {latitude: "51° 31' N", longitude: "7° 28' E"}
-  // );
-  //   const sortByDistance = require('sort-by-distance')
 
-  //   const points = [
-  //     { x: 3, y: 5, name:'aviv'},
-  //     { x: 80, y: 34},
-  //     { x: 3, y: 7},
-  //     { x: 22, y: 88},
-  //     { x: 100, y: 60},
-  //   ]
-    
-  //   const origin = { x: 50, y: 50}
-    
-  //   console.log(sortByDistance(origin, points))
-  //   newArray=sortByDistance(origin, points)
-  //   console.log(newArray)
-  //   newArray.map((s,i)=>{
-  //     console.log(s.name)
-  //   })
-  // }
 
   volApproves(){
     x=0;

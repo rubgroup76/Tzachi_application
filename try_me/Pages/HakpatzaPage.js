@@ -4,12 +4,23 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,Button,Picker,TextInput,FormLabel, FormInput
+  View,Button,Picker, Dimensions,TextInput,FormLabel, FormInput
 } from 'react-native';
-
-
+import { MapView } from 'expo';
+const { Marker } = MapView;
 
 export default class Hakpatza extends Component {
+
+  static navigationOptions = {
+    title: 'הקפצה לאירוע חירום',
+    headerStyle: {
+      backgroundColor: '#8FD1DF',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 	constructor(){
 		super();
 		this.state={
@@ -20,6 +31,9 @@ export default class Hakpatza extends Component {
             txtAmountPeople:1,
             txtX: 34.98571,
             txtY: 32.37821,
+            latitude: 32.378045,
+            longitude: 34.983458,
+            marker:null
         }
       
 		
@@ -35,9 +49,9 @@ export default class Hakpatza extends Component {
 
     }
     componentDidMount(){
-        fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/emergevents')
+      fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/emergevents')
       .then(response => response.json())
-       .then(response=>this.setState({events:response}))
+      .then(response=>this.setState({events:response}))
       .catch(error => console.warn('Error:', error.message));
    
       } 
@@ -60,12 +74,23 @@ export default class Hakpatza extends Component {
         "Content-type": "application/json; charset=UTF-8"
       }
     })
-
-      //.then(res => res.json())
       .then(response => {
-        //alert("good");
       })
       .catch(error => console.warn('Error:'+error));
+  }
+
+  onMapPress(e) {
+    this.setState({
+      txtX:e.nativeEvent.coordinate.longitude, txtY:e.nativeEvent.coordinate.latitude
+    })
+
+    this.setState({
+      marker: 
+        {
+          coordinate: e.nativeEvent.coordinate,
+          key: 1,
+        },
+    });
   }
 
   render() {
@@ -85,7 +110,7 @@ export default class Hakpatza extends Component {
          סוג אירוע
         </Text>
 		<Picker
-		style={{width:'80%'}}
+		style={styles.picker}
 	  selectedValue={this.state.PickerEventValue}
 		onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValue})}
 		>
@@ -98,7 +123,7 @@ export default class Hakpatza extends Component {
          חומרה
         </Text>
         <Picker
-		style={{width:'80%'}}
+		style={styles.picker}
 		selectedValue={this.state.PickerSeverityValue}
 		onValueChange={(itemValue,itemIndex) => this.setState({PickerSeverityValue:itemValue})}
 		>
@@ -113,22 +138,30 @@ export default class Hakpatza extends Component {
                         style={styles.TxtInp}
                         onChangeText={(text) => this.setState({ txtAmountPeople: text })}
                         keyboardType="numeric"
-                       // value={this.state.txtAmountPeople}
                     /> 
-                           <Text style={styles.welcome}> X:</Text>
-       <TextInput
-                        style={styles.TxtInp}
-                        onChangeText={(text) => this.setState({ txtX: text })}
-                        keyboardType="numeric"
-                       // value={this.state.txtAmountPeople}
-                    /> 
-                           <Text style={styles.welcome}> Y:</Text>
-       <TextInput
-                        style={styles.TxtInp}
-                        onChangeText={(text) => this.setState({ txtY: text })}
-                        keyboardType="numeric"
-                       // value={this.state.txtAmountPeople}
-                    /> 
+           <Text style={styles.welcome}> מקם את האירוע</Text>
+            <MapView
+              style={{
+                flex: 2,
+                width: Dimensions.get('window').width - 30,
+                
+              }}
+              onPress={e => this.onMapPress(e)}
+              region={{
+                latitude: this.state.latitude,
+                longitude: this.state.longitude,
+                latitudeDelta: 0.0055,
+                longitudeDelta: 0.0055,
+              }}
+            >
+           {this.state.marker&&
+            <Marker
+              key={this.state.marker.key}
+              coordinate={this.state.marker.coordinate}
+            />
+          } 
+            </MapView>
+
 		<Button title="הקפץ" onPress={this.clickMe}/>
         
       </View>
@@ -142,11 +175,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    
   },
   welcome: {
     fontSize: 18,
     textAlign: 'right',
     margin: 10,
+    
   },
   instructions: {
     textAlign: 'right',
@@ -164,4 +199,7 @@ const styles = StyleSheet.create({
     borderRadius:5,
     textAlign:'center',
 },
+picker:{
+  width:'80%'
+}
 });
