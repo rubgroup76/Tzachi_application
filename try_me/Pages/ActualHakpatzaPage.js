@@ -18,7 +18,7 @@
       severity=this.props.navigation.state.params.severity;
      return (
        <View style={styles.container}>
-         <Text style={styles.welcome}>הוקפצת לאירוע {name} בחומרה {severity}</Text>
+         <Text style={styles.welcome}>הוקפצת לאירוע {name}</Text>
          <Popup
            isVisible={this.state.isVisible}
            onCancelPressed={() => this.setState({ isVisible: false })}
@@ -33,7 +33,7 @@
            }}
          />
          <TouchableOpacity style={{ padding: 20 }} onPress={() => { this.setState({ isVisible: true }) }}>
-           <Text style={styles.welcome}>
+           <Text style={styles.nav}>
              נווט למקום האירוע
            </Text>
          </TouchableOpacity>
@@ -41,18 +41,24 @@
      )
    }
  }
- 
- const styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     justifyContent: 'center',
-     alignItems: 'center',
-     backgroundColor: '#F5FCFF'
-   },
-   welcome: {
-     fontSize: 20,
-     textAlign: 'center',
-     color: '#4682BC',
-     margin: 10
-   }
- }) 
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    //justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  welcome: {
+    fontSize: 25,
+    textAlign: 'center',
+    color: '#4682BC',
+    margin: 10
+  },
+  nav: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#4682BC',
+    margin: 10
+  }
+}) 

@@ -1,7 +1,5 @@
 import React from 'react';
 import { ScrollView, StyleSheet, TouchableHighlight, View, Text, Alert, ListView, Platform } from 'react-native';
-import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
-import { Notifications } from 'expo';
 import styles from './pageStyleTest';
 import geolib from 'geolib'
 
@@ -9,17 +7,7 @@ export default class HakpatzaVol extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      notification: {},
-      x: 0,
-      notificationsAvailable: [],
-      y: 0,
-    };
   }
-componentDidMount(){
-  console.warn(type);
-}
 
   volApproves() {
     x = 0;
@@ -29,16 +17,10 @@ componentDidMount(){
       (position) => {
         x = position.coords.longitude
         y = position.coords.latitude
-        console.warn(x_event);
-        console.warn(y_event);
-        //alert(position.coords.longitude)
-        //alert(position.coords.latitude)
         distance = geolib.getDistance(
           { lat: y, lon: x },
           { lat: y_event, lon: x_event }
         );
-        //    console.log(distance)
-
 
         VolApproves = {
           Id: id,
@@ -63,7 +45,7 @@ componentDidMount(){
           .then(response => {
             response.json;
           })
-          .then(alert("good"))
+          .then(alert("אישרת הגעה. אם יוחלט להקפיץ אותך תקבל הודעה על כך"))
 
           .catch(error => console.warn('Error:' + error));
       },
@@ -81,7 +63,7 @@ componentDidMount(){
       team = this.props.navigation.state.params.team;
       x_event = this.props.navigation.state.params.x_event;
       y_event = this.props.navigation.state.params.y_event;
-      type=this.props.navigation.state.params.type;
+      type = this.props.navigation.state.params.type;
       return (
         <View>
 

@@ -52,9 +52,7 @@ export default class Hakpatza extends Component {
       .then(response => response.json())
       .then(response => this.setState({ events: response }))
       .catch(error => console.warn('Error:', error.message));
-
   }
-
 
   postActualEvent() {
     let ActualEvent = {

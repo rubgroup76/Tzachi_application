@@ -65,7 +65,6 @@ export default class LoginView extends Component {
     // POST adds a random id to the object sent
     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/?Id=' + this.state.txtID + '&Password=' + this.state.txtPass, {
       method: 'GET',
-      // body: JSON.stringify({}),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }
@@ -73,9 +72,9 @@ export default class LoginView extends Component {
       .then(response => response.json())
       .then(response => {
         if (response.Id) {
-
           this.setState({ userId: response.Id, userName: response.Name, userRoleId: response.RoleId });
 
+          //Get the token of the phone
           registerForPushNotificationsAsync()
             .then(tok => {
               this.setState({ token: tok });
