@@ -27,7 +27,6 @@
            options={{
              latitude: y_event,
              longitude: x_event,
-             //title: 'The White House',
              dialogTitle: 'נווט באמצעות',
              dialogMessage: ' ',
              cancelText: 'ביטול'

@@ -55,11 +55,8 @@ export default class LoginView extends Component {
       body: JSON.stringify({}),
     })
 
-      //.then(res => res.json())
-      .then(response => {
-        alert(token);
-      })
-
+      .then(alert(token))
+      .then(this.props.navigation.navigate('Home', { userName: this.state.txtID, RoleId: this.state.userRoleId }))
       .catch(error => console.warn('Error:' + error));
   }
 
@@ -78,17 +75,13 @@ export default class LoginView extends Component {
         if (response.Id) {
 
           this.setState({ userId: response.Id, userName: response.Name, userRoleId: response.RoleId });
-          this.props.navigation.navigate('Home', { userName: this.state.txtID, RoleId: this.state.userRoleId });
-
 
           registerForPushNotificationsAsync()
             .then(tok => {
               this.setState({ token: tok });
-            });
-          alert(this.state.token);
-          this._notificationSubscription = Notifications.addListener(this._handleNotification);
-          this.updateToken(this.state.token);
-
+              this.updateToken(tok)
+            })
+          this._notificationSubscription = Notifications.addListener(this._handleNotification);      
         }
         else
           alert("Incorrect username or password");
