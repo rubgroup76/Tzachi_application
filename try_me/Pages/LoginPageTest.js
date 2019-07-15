@@ -17,8 +17,16 @@ import {
   TouchableHighlight,
   Image,
   Alert,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback
 } from 'react-native';
 import styles from './pageStyleTest';
+
+const DisdmissKeyboard=({children})=>(
+  <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+  );
 
 export default class LoginView extends Component {
 
@@ -55,7 +63,7 @@ export default class LoginView extends Component {
       body: JSON.stringify({}),
     })
 
-      .then(alert(token))
+      //.then(alert(token))
       .then(this.props.navigation.navigate('Home', { userName: this.state.txtID, RoleId: this.state.userRoleId }))
       .catch(error => console.warn('Error:' + error));
   }
@@ -110,14 +118,19 @@ export default class LoginView extends Component {
     Alert.alert("Alert", "Button pressed " + viewId);
   }
 
+  handleKeyDown= (e)=> {
+    if(e.nativeEvent.key == "Enter"){
+        dismissKeyboard();
+    }
+}
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="position" >
         <View style={styles.Header}>
           <Text style={styles.textBigLogIn}>ברוכים הבאים</Text>
         </View>
         <Image
-          style={{ position: 'absolute', top: '20%', height: hp('20%'), width: wp('40%') }}
+          style={{ position: 'absolute', left: '17.5%', top: '20%', height: hp('20%'), width: wp('40%') }}
           source={require('../assets/hamaapilLogo.png')} />
         <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{ uri: 'https://png.icons8.com/person' }} />
@@ -125,6 +138,8 @@ export default class LoginView extends Component {
             placeholder="ID"
             keyboardType="numeric"
             underlineColorAndroid='transparent'
+            returnKeyType="done"
+            onKeyPress={this.handleKeyDown}
             onChangeText={(text) => this.setState({ txtID: text })}
 
           />
@@ -157,7 +172,7 @@ export default class LoginView extends Component {
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onClickListener('register')}>
           <Text>Register</Text>
         </TouchableHighlight>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

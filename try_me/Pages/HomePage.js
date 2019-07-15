@@ -52,6 +52,7 @@ export default class HomePage extends React.Component {
     role = this.props.navigation.state.params.RoleId;
     return (
       <View style={styles1.containerChat}>
+        
         <View style>
           <Text style={styles1.textBigLogInChat}>ברוכים הבאים </Text>
         </View>
@@ -126,11 +127,13 @@ export default class HomePage extends React.Component {
           </View>
           <View style={styles.Content}>
             <View style={{ position: 'absolute', bottom: 0 }}>
+              
               <Button
-                primary text="back to Login Page"
-                icon="arrow-back"
+                 primary text="צפייה באירוע"
+                icon="info"
+                style={{fontSize:20}}
                 onPress={() => {
-                  this.props.navigation.navigate('LoginTest');
+                  this.props.navigation.navigate('ManageEvent');
                 }} />
             </View>
 

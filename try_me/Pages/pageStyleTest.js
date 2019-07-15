@@ -122,6 +122,7 @@ export default StyleSheet.create({
         marginBottom:20,
         width:250,
         borderRadius:30,
+        marginLeft:'7%'
         //color: '#BED68C',
       },
       loginButton: {
@@ -138,5 +139,9 @@ export default StyleSheet.create({
       },
       loginText: {
         color: 'white',
+      },
+      locationText:{
+        color:'white',
+        fontWeight: 'bold'
       }
 });

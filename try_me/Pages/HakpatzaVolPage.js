@@ -9,6 +9,19 @@ export default class HakpatzaVol extends React.Component {
     super(props);
   }
 
+
+  componentWillMount(){
+    fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actualeventnow')
+    .then(response => response.json())
+
+    .then(response => {
+      if (response.EventName == null) {
+        this.setState({ noEvent: true })
+      }
+    })
+    .catch(error => console.warn('Error:', error.message));
+
+  }
   volApproves() {
     x = 0;
     y = 0;

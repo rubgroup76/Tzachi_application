@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GetARideDemo",
-    "slug": "get-a-ride-demo",
+    "name": "TzachiApp",
+    "slug": "tzachi-app",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -33,6 +33,7 @@
           "waze"
         ]
       }
-    }
+    },
+    "description": ""
   }
 }

@@ -138,4 +138,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         //padding: 10
     },
+    buttonEvent:{
+        //bottom:'25%'
+        fontSize:15
+    }
 });

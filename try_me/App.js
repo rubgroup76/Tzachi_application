@@ -7,7 +7,7 @@ import LocationPage from './Pages/LocationPage';
 import CameraPage from './Pages/CameraPage';
 import PushNotPage from './Pages/PushNotPage';
 import ElementsPage from './Pages/ElementsPage';
-import EmergencyEvent from './Pages/EmergencyEvent';
+//import EmergencyEvent from './Pages/EmergencyEvent';
 import LoginPageTest from './Pages/LoginPageTest';
 import Chat from './Components/Chat';
 import CreateAccount from './Components/CreateAccount';
@@ -18,7 +18,7 @@ import HakpatzaVolPage from './Pages/HakpatzaVolPage';
 import EmergencyScenarioPage from './Pages/EmergencyScenarioPage';
 import ShowEmergancyPage from './Pages/ShowEmergancyPage';
 import ActualHakpatza from './Pages/ActualHakpatzaPage';
-
+import ManageEvent from './Pages/ManageEventPage';
 
 class App extends React.Component {
 
@@ -41,7 +41,7 @@ const AppNavigator = createStackNavigator(
     Camera:CameraPage,
     Push:PushNotPage,
     Elements:ElementsPage,
-    Emergency: EmergencyEvent,
+    //Emergency: EmergencyEvent,
     LoginTest: LoginPageTest,
     Hakpatza:HakpatzaPage,
     HakpatzaVol:HakpatzaVolPage,
@@ -50,7 +50,8 @@ const AppNavigator = createStackNavigator(
     CreateAccount: CreateAccount,
     EmergencyScenario: EmergencyScenarioPage,
     ShowEmegancy: ShowEmergancyPage,
-    ActualHakpatza : ActualHakpatza
+    ActualHakpatza : ActualHakpatza,
+    ManageEvent: ManageEvent
   },
   {
     initialRouteName: 'LoginTest',

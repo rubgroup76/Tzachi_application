@@ -4,11 +4,17 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View, Button, Picker, Dimensions, TextInput, FormLabel, FormInput
+  View, Picker, Dimensions, TextInput, FormLabel, FormInput, TouchableWithoutFeedback, Keyboard
 } from 'react-native';
+import { Button } from 'react-native-material-ui';
 import { MapView } from 'expo';
 const { Marker } = MapView;
 
+const DisdmissKeyboard=({children})=>(
+<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+  {children}
+</TouchableWithoutFeedback>
+);
 export default class Hakpatza extends Component {
 
   static navigationOptions = {
@@ -28,7 +34,7 @@ export default class Hakpatza extends Component {
       events: ''
     };
     this.state = {
-      txtAmountPeople: 1,
+      txtAmountPeople: 0,
       txtX: 34.98571,
       txtY: 32.37821,
       latitude: 32.378045,
@@ -55,6 +61,10 @@ export default class Hakpatza extends Component {
   }
 
   postActualEvent() {
+    if(this.state.PickerEventValue==undefined || this.state.PickerSeverityValue==undefined || this.state.txtAmountPeople==0){
+    alert("עלייך למלא את כל השדות")
+    }
+    else{
     let ActualEvent = {
       EventName: this.state.PickerEventValue,
       Severity: this.state.PickerSeverityValue,
@@ -75,6 +85,7 @@ export default class Hakpatza extends Component {
       })
       .catch(error => console.warn('Error:' + error));
   }
+}
 
   onMapPress(e) {
     this.setState({
@@ -102,10 +113,11 @@ export default class Hakpatza extends Component {
       });
 
       return (
+        <DisdmissKeyboard>
         <View style={styles.container}>
-          <Text style={styles.welcome}>
+          {/* <Text style={styles.welcome}>
             סוג אירוע
-        </Text>
+        </Text> */}
           <Picker
             style={styles.picker}
             selectedValue={this.state.PickerEventValue}
@@ -116,9 +128,9 @@ export default class Hakpatza extends Component {
 
           </Picker>
 
-          <Text style={styles.welcome}>
+          {/* <Text style={styles.welcome}>
             חומרה
-        </Text>
+        </Text> */}
           <Picker
             style={styles.picker}
             selectedValue={this.state.PickerSeverityValue}
@@ -135,9 +147,11 @@ export default class Hakpatza extends Component {
             style={styles.TxtInp}
             onChangeText={(text) => this.setState({ txtAmountPeople: text })}
             keyboardType="numeric"
+            
           />
           <Text style={styles.welcome}> מקם את האירוע</Text>
           <MapView
+          mapType="satellite"
             style={{
               flex: 2,
               width: Dimensions.get('window').width - 30,
@@ -147,8 +161,8 @@ export default class Hakpatza extends Component {
             region={{
               latitude: this.state.latitude,
               longitude: this.state.longitude,
-              latitudeDelta: 0.0055,
-              longitudeDelta: 0.0055,
+              latitudeDelta: 0.0075,
+              longitudeDelta: 0.0075,
             }}
           >
             {this.state.marker &&
@@ -159,9 +173,10 @@ export default class Hakpatza extends Component {
             }
           </MapView>
 
-          <Button title="הקפץ" onPress={this.clickMe} />
-
+          <Button style={styles.button}  primary text="הקפץ" onPress={this.clickMe} />
+          {/* <Button title="הקפץ" onPress={this.clickMe} /> */}
         </View>
+        </DisdmissKeyboard>
       );
     }
   }
@@ -178,6 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'right',
     margin: 10,
+    fontWeight:'bold'
 
   },
   instructions: {
@@ -186,7 +202,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   TxtInp: {
-    height: 30,
+    height: 35,
     width: 55,
     borderColor: '#00008b',
     borderWidth: 1,
@@ -197,6 +213,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   picker: {
-    width: '80%'
+    width: '80%',
+    height:'10%',
+    transform: [
+      { scaleX: 1.1 }, 
+      { scaleY: 1.1 },
+   ],
+  },
+  button:{
+    width: '10%',
+    height:'10%',
+    backgroundColor:'#333333',
+    fontSize: 30
   }
+  
 });
