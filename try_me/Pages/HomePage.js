@@ -50,8 +50,7 @@ export default class HomePage extends React.Component {
 
 
   render() {
-    role=0;
-    //role = this.props.navigation.state.params.RoleId;
+    role = this.props.navigation.state.params.RoleId;
     if (Platform.OS==='ios') {
     return (
       <View style={styles1.containerChat}>
