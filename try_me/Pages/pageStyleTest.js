@@ -48,7 +48,7 @@ export default StyleSheet.create({
         color: '#BED68C',
         margin: 10,
         fontWeight: 'bold',
-        fontFamily: "serif",
+        //fontFamily: "serif",
     },
 
     textBigLogInChat: {
@@ -61,7 +61,7 @@ export default StyleSheet.create({
       fontSize: 50,
       color: '#BED68C',
       fontWeight: 'bold',
-      fontFamily: "serif",
+      //fontFamily: "serif",
   },
 
   picstyle:{

@@ -56,7 +56,7 @@ const AppNavigator = createStackNavigator(
     ManageEvent: ManageEvent
   },
   {
-    initialRouteName: 'HakpatzaVol',
+    initialRouteName: 'LoginTest',
   }
 );
 

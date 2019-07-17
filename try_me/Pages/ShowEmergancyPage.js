@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text,Button, View,StyleSheet, TouchableOpacity, TextInput, Image,Picker } from 'react-native';
+import { Text,Button,Platform, ScrollView, View,StyleSheet, TouchableOpacity, TextInput, Image,Picker } from 'react-native';
 import { Dialog, DialogDefaultActions } from 'react-native-material-ui';
 
 export default class ShowEmergancyPage extends React.Component {
@@ -53,7 +53,37 @@ export default class ShowEmergancyPage extends React.Component {
           }
 
       render(){
+        if (Platform.OS==='ios') {
           event=this.props.navigation.state.params.event;
+          if(this.state.Scenario==0){
+            return(<View>
+                <Text>אין אירועים קיימים במערכת</Text>
+            </View>)
+        }
+        else{
+            this.ShowTheEvents();
+            let eventsItems = DataARR.map( (s, i) => {
+                return <View style={styles.instructions} key={i}><Text style={styles.textStyleIphone}>{s.ActionNumber}.  {s.ActionDesc}</Text></View>
+           }
+           );
+         // alert(event);
+          return(
+            <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true}>
+              <View style={styles.container}>
+              <View style={styles.Header}>
+                    <Text style={styles.textBigLogInChatIphone}>רשימת האירועים:</Text>
+                </View>
+                <View>
+                    <Text style={styles.HeaderIphone}>בחרת לראות אירועים מסוג : {event}</Text>
+                </View>
+             {eventsItems}
+            </View>
+            </ScrollView>
+          );
+      }
+    }
+  else{
+    event=this.props.navigation.state.params.event;
           if(this.state.Scenario==0){
             return(<View>
                 <Text>אין אירועים קיימים במערכת</Text>
@@ -67,18 +97,20 @@ export default class ShowEmergancyPage extends React.Component {
            );
          // alert(event);
           return(
+            <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true}>
               <View style={styles.container}>
               <View style={styles.Header}>
                     <Text style={styles.textBigLogInChat}>רשימת האירועים:</Text>
                 </View>
                 <View>
-                    <Text style={styles.header2}>בחרת לראות אירועים מסוג : {event}</Text>
+                    <Text style={styles.Header}>בחרת לראות אירועים מסוג : {event}</Text>
                 </View>
              {eventsItems}
             </View>
+            </ScrollView>
           );
       }
-    }
+  }}
 }
 
 const styles = StyleSheet.create({
@@ -92,45 +124,83 @@ const styles = StyleSheet.create({
       backgroundColor: '#FFFFFF',
      //width: '90%',
       //height: '90%',
-      borderColor: '#000000',
-      borderStyle: 'solid',
-      borderWidth: 4,
+      //borderColor: '#000000',
+      //borderStyle: 'solid',
+      //borderWidth: 4,
     },
     instructions: {
       //textAlign: 'right',
       color: '#333333',
       fontWeight: 'bold',
-      marginTop: 16,
+      marginTop: 18,
       borderRadius: 2,
+      textAlign:'right',
     },
-    textStyle:{
+    textStyleIphone:{
         //textAlign: 'left',
-        textShadowColor: '#8FD1DF',
-        textShadowOffset: { width: 2, height: 2 },
-        textShadowRadius : 5,
+        //textShadowColor: '#8FD1DF',
+        //textShadowOffset: { width: 2, height: 2 },
+        //textShadowRadius : 5,
+        textAlign:'right',
+        marginRight:10,
+        fontSize:16,
         // borderColor: '#000000',
         // borderStyle: 'solid',
         // borderWidth: 2,
 
     },
-    Header: {
-        //flex: 2
-    },
-    Header2:{
-       fontSize:30,
+    textStyle:{
+      //textAlign: 'left',
+      //textShadowColor: '#8FD1DF',
+      //textShadowOffset: { width: 2, height: 2 },
+      //textShadowRadius : 5,
+      marginLeft:10,
+      fontSize:16,
+      // borderColor: '#000000',
+      // borderStyle: 'solid',
+      // borderWidth: 2,
+
+  },
+    HeaderIphone:{
        fontWeight: 'bold',
+       textAlign:'right',
+       fontSize:16,
+       marginRight:10,
+       marginTop:10,
     },
-    textBigLogInChat: {
+    Header:{
+      fontWeight: 'bold',
+      fontSize: 16,
+      marginLeft:10,
+      marginTop:10,
+   },
+    textBigLogInChatIphone: {
         // position: 'absolute',
         // top:30,
         // left:-200,
         //marginTop: 10,
         top:0,
         alignItems: 'center',
+        textAlign:'right',
         fontSize: 40,
-        color: '#BED68C',
+        //color: '#BED68C',
+        color: 'black',
         fontWeight: 'bold',
-        fontFamily: "serif",
+        //fontFamily: "serif",
     },
+    textBigLogInChat: {
+      // position: 'absolute',
+      // top:30,
+      // left:-200,
+      //marginTop: 10,
+      top:0,
+      textAlign: 'center',
+      alignItems: 'center',
+      fontSize: 40,
+      //color: '#BED68C',
+      color: 'black',
+      fontWeight: 'bold',
+      //fontFamily: "serif",
+  },
   });
   

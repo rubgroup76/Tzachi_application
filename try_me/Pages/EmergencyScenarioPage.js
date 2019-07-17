@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text,Button, View,StyleSheet, TouchableOpacity, TextInput, Image,Picker } from 'react-native';
+import { Text, View,StyleSheet, TouchableOpacity, TextInput, Image,Picker} from 'react-native';
 import { Dialog, DialogDefaultActions } from 'react-native-material-ui';
 import styles1 from './pageStyleTest';
+import { Button } from 'react-native-elements';
 
 export default class EmergencyScenarioPage extends React.Component {
     static navigationOptions = {
@@ -99,7 +100,32 @@ onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValu
     {eventsItems}
 
 </Picker>
- <Button style={{color:'#BED68C'}} title="הצג" onPress={this.clickme}/>
+ {/* <Button style={{color:'#BED68C'}} title="הצג" onPress={this.clickme}/> */}
+ <Button
+              title="הצג"
+              titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
+              linearGradientProps={{
+                colors: ['#98B0E3', '#8FD1DF'],
+                start: [1, 0],
+                end: [0.2, 0],
+              }}
+              buttonStyle={{
+                borderWidth: 0,
+                borderColor: 'transparent',
+                borderRadius: 20,
+                //testdjfdjfdjh
+              }}
+              containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
+              icon={{
+                name: 'fire',
+                type: 'font-awesome',
+                size: 15,
+                color: 'white',
+              }}
+              iconRight
+              iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+              onPress={this.clickme}
+            />
  {/* <Button title="הצג" onPress ={()=>this.props.navigation.navigate('ShowEmegancy',{event: this.state.PickerEventValue})}/> */}
         </View>
 
@@ -160,6 +186,6 @@ textBigLogInChat: {
   fontSize: 40,
   color: '#BED68C',
   fontWeight: 'bold',
-  fontFamily: "serif",
+  //fontFamily: "serif",
 },
 });
