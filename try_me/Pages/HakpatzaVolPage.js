@@ -1,8 +1,9 @@
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableHighlight, View, Text, Alert, ListView, Platform } from 'react-native';
+import { ScrollView, Image, StyleSheet, TouchableHighlight, View, Text, Alert, ListView, Platform } from 'react-native';
 import styles from './pageStyleTest';
 import geolib from 'geolib'
 import { AsyncStorage } from 'react-native';
+import { Avatar, Badge, withBadge, colors, Button, ButtonGroup } from 'react-native-elements';
 
 export default class HakpatzaVol extends React.Component {
   static navigationOptions = {
@@ -124,7 +125,7 @@ export default class HakpatzaVol extends React.Component {
     );
   }
   render() {
-
+    if (Platform.OS==='ios') {
     // if (typeof this.props.navigation.state.params != "undefined") {
     if (this.state.noEvent == 1) {
       if (this.state.type == 1) {
@@ -143,30 +144,153 @@ export default class HakpatzaVol extends React.Component {
         // type = this.props.navigation.state.params.type;
         return (
           <View>
+          <View style={{alignItems: 'center', marginTop: '50%'}}>
 
-            <Text>הוקפצת לאירוע {this.state.actEvent.eventName}</Text>
-            <Text>אנא אשר הגעה אם ביכולתך להגיע</Text>
-            <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
+            <Text style={stylesIphone.textStyle1}>הוקפצת לאירוע! {this.state.actEvent.eventName}</Text>
+            <Text style={stylesIphone.textStyle2}>אנא אשר הגעה אם ביכולתך להגיע</Text>
+            {/* <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
               onPress={this.volApproves}
             >
               <Text style={styles.loginText}>מאשר</Text>
-            </TouchableHighlight>
+            </TouchableHighlight> */}
+            <View style={{alignItems: 'center', marginTop: '20%'}}>
+              <Button
+              title="צפייה באירוע"
+              titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
+              linearGradientProps={{
+                colors: ['#98B0E3', '#8FD1DF'],
+                start: [1, 0],
+                end: [0.2, 0],
+              }}
+              buttonStyle={{
+                borderWidth: 0,
+                borderColor: 'transparent',
+                borderRadius: 20,
+                //testdjfdjfdjh
+              }}
+              containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
+              icon={{
+                name: 'fire',
+                type: 'font-awesome',
+                size: 15,
+                color: 'white',
+              }}
+              iconRight
+              iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+              onPress={this.volApproves}
+            />
+            </View>
             <Text>{this.state.actEvent.eventNumber}</Text>
             {/* <Text>Origin: {this.state.notification.origin}</Text>
         <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
           </View>
-
+          </View>
         );
       }
     }
     else
       return (
         <View>
-          <Text>
+          <Text style={stylesIphone.noEvent}>
             לא קיים אירוע
       </Text>
         </View>
       )
   }
+  else{
+    if (this.state.noEvent == 1) {
+      if (this.state.type == 1) {
+        this.props.navigation.navigate('ActualHakpatza')
+      return <View><Text></Text></View>;
+      }
+      
+      else {
+        id = this.state.actEvent.id;
+        name = this.state.actEvent.eventName;
+        num = this.state.actEvent.eventNumber;
+        token = this.state.actEvent.token;
+        team = this.state.actEvent.team;
+        x_event = this.state.actEvent.x_event;
+        y_event = this.state.actEvent.y_event;
+        // type = this.props.navigation.state.params.type;
+        return (
+          <View>
+          <View style={{alignItems: 'center', marginTop: '50%'}}>
 
+            <Text style={stylesIphone.textStyle1}>הוקפצת לאירוע! {this.state.actEvent.eventName}</Text>
+            <Text style={stylesIphone.textStyle2}>אנא אשר הגעה אם ביכולתך להגיע</Text>
+            {/* <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
+              onPress={this.volApproves}
+            >
+              <Text style={styles.loginText}>מאשר</Text>
+            </TouchableHighlight> */}
+            <View style={{alignItems: 'center', marginTop: '20%'}}>
+              <Button
+              title="צפייה באירוע"
+              titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
+              linearGradientProps={{
+                colors: ['#98B0E3', '#8FD1DF'],
+                start: [1, 0],
+                end: [0.2, 0],
+              }}
+              buttonStyle={{
+                borderWidth: 0,
+                borderColor: 'transparent',
+                borderRadius: 20,
+                //testdjfdjfdjh
+              }}
+              containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
+              icon={{
+                name: 'fire',
+                type: 'font-awesome',
+                size: 15,
+                color: 'white',
+              }}
+              iconRight
+              iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+              onPress={this.volApproves}
+            />
+            </View>
+            <Text>{this.state.actEvent.eventNumber}</Text>
+            {/* <Text>Origin: {this.state.notification.origin}</Text>
+        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
+          </View>
+          </View>
+        );
+      }
+    }
+    else
+      return (
+        <View>
+          <Text style={stylesIphone.noEvent}>
+            לא קיים אירוע
+      </Text>
+        </View>
+      )
+  }
 }
+}
+
+const stylesIphone = StyleSheet.create({
+  textStyle1: {
+fontSize:40,
+fontWeight: 'bold',
+textAlign: 'center',
+alignItems: 'center',
+marginBottom: 10,
+color: '#ff8080',
+},
+textStyle2: {
+  fontSize:20,
+  //fontWeight: 'bold',
+  textAlign: 'center',
+  alignItems: 'center',
+  },
+  noEvent: {
+    fontSize:40,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    alignItems: 'center',
+    marginTop: '50%',
+  },
+});

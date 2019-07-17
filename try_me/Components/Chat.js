@@ -2,7 +2,7 @@ import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import firebaseSvc from '../Pages/FirebaseSvc';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+//import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
