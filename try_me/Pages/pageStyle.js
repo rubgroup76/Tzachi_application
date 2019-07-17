@@ -122,6 +122,16 @@ export default StyleSheet.create({
     },
     buttonMain:{
         position: 'absolute',
+        bottom:'30%',
+        //bottom: 0,
+        //alignSelf: 'center',
+        flexDirection: 'row',
+        flex:4,
+        //padding: 10,
+        //marginBottom: 60
+    },
+    buttonMainAndroid:{
+        position: 'absolute',
         bottom:'60%',
         //bottom: 0,
         //alignSelf: 'center',

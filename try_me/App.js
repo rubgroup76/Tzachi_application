@@ -14,6 +14,7 @@ import CreateAccount from './Components/CreateAccount';
 import LoginToChat from './Components/LoginToChat';
 import { ThemeProvider } from 'react-native-material-ui';
 import HakpatzaPage from './Pages/HakpatzaPage';
+//import HakpatzaTest from './Pages/HakptzaPageTest';
 import HakpatzaVolPage from './Pages/HakpatzaVolPage';
 import EmergencyScenarioPage from './Pages/EmergencyScenarioPage';
 import ShowEmergancyPage from './Pages/ShowEmergancyPage';
@@ -44,6 +45,7 @@ const AppNavigator = createStackNavigator(
     //Emergency: EmergencyEvent,
     LoginTest: LoginPageTest,
     Hakpatza:HakpatzaPage,
+    //HakpatzaTest: HakpatzaTest,
     HakpatzaVol:HakpatzaVolPage,
     Chat: Chat,
     LoginToChat:LoginToChat,
@@ -54,7 +56,7 @@ const AppNavigator = createStackNavigator(
     ManageEvent: ManageEvent
   },
   {
-    initialRouteName: 'LoginTest',
+    initialRouteName: 'Home',
   }
 );
 
