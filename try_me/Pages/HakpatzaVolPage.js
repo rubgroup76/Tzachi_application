@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableHighlight, View, Text, Alert, ListView, Platform } from 'react-native';
+import { ScrollView, Image, StyleSheet, TouchableHighlight, View, Text, Alert, ListView, Platform } from 'react-native';
 import styles from './pageStyleTest';
 import geolib from 'geolib'
 import { AsyncStorage } from 'react-native';
@@ -191,7 +191,7 @@ export default class HakpatzaVol extends React.Component {
     else
       return (
         <View>
-          <Text>
+          <Text style={stylesIphone.noEvent}>
             לא קיים אירוע
       </Text>
         </View>
@@ -262,7 +262,7 @@ export default class HakpatzaVol extends React.Component {
     else
       return (
         <View>
-          <Text>
+          <Text style={stylesIphone.noEvent}>
             לא קיים אירוע
       </Text>
         </View>
@@ -285,5 +285,12 @@ textStyle2: {
   //fontWeight: 'bold',
   textAlign: 'center',
   alignItems: 'center',
+  },
+  noEvent: {
+    fontSize:40,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    alignItems: 'center',
+    marginTop: '50%',
   },
 });
