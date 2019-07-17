@@ -2,26 +2,83 @@ import React from 'react';
 import { ScrollView, StyleSheet, TouchableHighlight, View, Text, Alert, ListView, Platform } from 'react-native';
 import styles from './pageStyleTest';
 import geolib from 'geolib'
+import { AsyncStorage } from 'react-native';
 
 export default class HakpatzaVol extends React.Component {
-
+  static navigationOptions = {
+    title: 'הקפצה לאירוע חירום',
+    headerStyle: {
+      backgroundColor: '#8FD1DF',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   constructor(props) {
     super(props);
+    this.state = {
+      noEvent: 0,
+      actEvent: '',
+      type: ''
+    }
   }
 
 
-  componentWillMount(){
+  componentWillMount() {
     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actualeventnow')
-    .then(response => response.json())
+      .then(response => response.json())
 
-    .then(response => {
-      if (response.EventName == null) {
-        this.setState({ noEvent: true })
-      }
-    })
-    .catch(error => console.warn('Error:', error.message));
+      .then(response => {
+        if (response.EventName != null) {
+          this.setState({ noEvent: 1, event: response.EventName })
+        }
+        else{
+          this.deleteLocalStorage();
+        }
+      })
+      .catch(error => console.warn('Error:', error.message));
 
   }
+  async deleteLocalStorage() {
+
+    try {
+      await AsyncStorage.removeItem('Event');
+  
+
+      return true;
+    }
+    catch (exception) {
+      return false;
+    }
+
+
+  }
+  async UNSAFE_componentWillMount() {
+    setTimeout(() => {
+      this.getLocalStorage();
+    }, 500);
+
+
+  }
+  getLocalStorage = async () => {
+    await AsyncStorage.getItem('Event', (err, result) => {
+      if (result != null) {
+        this.setState({ actEvent: JSON.parse(result) });
+      }
+      //else alert('err event');
+    }
+    )
+
+    await AsyncStorage.getItem('Type', (err, result) => {
+      if (result != null) {
+        this.setState({ type: JSON.parse(result) });
+      }
+      //else alert('err type');
+    }
+    )
+  }
+
   volApproves() {
     x = 0;
     y = 0;
@@ -68,31 +125,39 @@ export default class HakpatzaVol extends React.Component {
   }
   render() {
 
-    if (typeof this.props.navigation.state.params != "undefined") {
-      id = this.props.navigation.state.params.id;
-      name = this.props.navigation.state.params.evName;
-      num = this.props.navigation.state.params.evNum;
-      token = this.props.navigation.state.params.token;
-      team = this.props.navigation.state.params.team;
-      x_event = this.props.navigation.state.params.x_event;
-      y_event = this.props.navigation.state.params.y_event;
-      type = this.props.navigation.state.params.type;
-      return (
-        <View>
+    // if (typeof this.props.navigation.state.params != "undefined") {
+    if (this.state.noEvent == 1) {
+      if (this.state.type == 1) {
+        this.props.navigation.navigate('ActualHakpatza')
+      return <View><Text></Text></View>;
+      }
+      
+      else {
+        id = this.state.actEvent.id;
+        name = this.state.actEvent.eventName;
+        num = this.state.actEvent.eventNumber;
+        token = this.state.actEvent.token;
+        team = this.state.actEvent.team;
+        x_event = this.state.actEvent.x_event;
+        y_event = this.state.actEvent.y_event;
+        // type = this.props.navigation.state.params.type;
+        return (
+          <View>
 
-          <Text>הוקפצת לאירוע {name}</Text>
-          <Text>אנא אשר הגעה אם ביכולתך להגיע</Text>
-          <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
-            onPress={this.volApproves}
-          >
-            <Text style={styles.loginText}>מאשר</Text>
-          </TouchableHighlight>
-
-          {/* <Text>Origin: {this.state.notification.origin}</Text>
+            <Text>הוקפצת לאירוע {this.state.actEvent.eventName}</Text>
+            <Text>אנא אשר הגעה אם ביכולתך להגיע</Text>
+            <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
+              onPress={this.volApproves}
+            >
+              <Text style={styles.loginText}>מאשר</Text>
+            </TouchableHighlight>
+            <Text>{this.state.actEvent.eventNumber}</Text>
+            {/* <Text>Origin: {this.state.notification.origin}</Text>
         <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
-        </View>
+          </View>
 
-      );
+        );
+      }
     }
     else
       return (

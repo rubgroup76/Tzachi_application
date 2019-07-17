@@ -47,6 +47,8 @@ export default class Hakpatza extends Component {
 
 
   };
+  
+
   clickMe = () => {
     var data = this.state.PickerValue;
     if (data == "") {
@@ -84,8 +86,7 @@ export default class Hakpatza extends Component {
         "Content-type": "application/json; charset=UTF-8"
       }
     })
-      .then(response => {
-      })
+      
       .catch(error => console.warn('Error:' + error));
   }
 }

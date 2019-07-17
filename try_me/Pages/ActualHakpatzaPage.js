@@ -1,21 +1,46 @@
  import React, { Component } from 'react'
  import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
  import { Popup } from 'react-native-map-link'
- 
+ import {AsyncStorage} from 'react-native';
+
  export default class ActualHakpatza extends Component {
-   state = {
+  static navigationOptions = {
+    title: 'אירוע הקפצה',
+    headerStyle: {
+      backgroundColor: '#8FD1DF',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    right: <button title='Home Page' onPress={() => this.props.navigation.navigate('Home')} />
+  };
+  state = {
      isVisible: false,
+     actEvent1:''
 
    }
- 
+   async UNSAFE_componentWillMount() {
+    setTimeout(() => {
+      this.getLocalStorage();
+    }, 500);
+
+
+  }
+  getLocalStorage = async () => {
+    await AsyncStorage.getItem('Event', (err, result) => {
+      if (result != null) {
+        this.setState({ actEvent1: JSON.parse(result) });
+      }
+      //else alert('err event');
+    }
+    )
+  }
    render () {
-      name = this.props.navigation.state.params.evName;
-      num = this.props.navigation.state.params.evNum;
-      token = this.props.navigation.state.params.token;
-      team = this.props.navigation.state.params.team;
-      x_event = this.props.navigation.state.params.x_event;
-      y_event = this.props.navigation.state.params.y_event;
-      severity=this.props.navigation.state.params.severity;
+
+    name = this.state.actEvent1.eventName;
+    x_event = this.state.actEvent1.x_event;
+    y_event = this.state.actEvent1.y_event;
      return (
        <View style={styles.container}>
          <Text style={styles.welcome}>הוקפצת לאירוע {name}</Text>

@@ -7,6 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 import registerForPushNotificationsAsync from '../Components/registerForPushNotificationsAsync';
 import { Notifications } from 'expo';
+import {AsyncStorage} from 'react-native';
 
 import {
   StyleSheet,
@@ -22,11 +23,11 @@ import {
 } from 'react-native';
 import styles from './pageStyleTest';
 
-const DisdmissKeyboard=({children})=>(
-  <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-    {children}
-  </TouchableWithoutFeedback>
-  );
+// const DisdmissKeyboard=({children})=>(
+//   <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+//     {children}
+//   </TouchableWithoutFeedback>
+//   );
 
 export default class LoginView extends Component {
 
@@ -55,6 +56,28 @@ export default class LoginView extends Component {
     }
   }
 
+  _storeData = async (user) => {
+    try {
+      console.warn(user)
+      await AsyncStorage.setItem('Event', JSON.stringify(user));
+
+    } catch (error) {
+      console.warn(error);
+      // Error saving data
+    }
+
+  }
+  _storeType = async (type) => {
+    try {
+      console.warn(type)
+      await AsyncStorage.setItem('Type', JSON.stringify(type));
+
+    } catch (error) {
+      console.warn(error);
+      // Error saving data
+    }
+
+  }
   updateToken(token) {
     fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volunteers/token/?User=' + this.state.txtID + "&Token=" + token, {
 
@@ -87,8 +110,11 @@ export default class LoginView extends Component {
             .then(tok => {
               this.setState({ token: tok });
               this.updateToken(tok)
+              // this._storeToken(tok);
             })
-          this._notificationSubscription = Notifications.addListener(this._handleNotification);      
+            
+          this._notificationSubscription = Notifications.addListener(this._handleNotification);  
+          
         }
         else
           alert("Incorrect username or password");
@@ -97,7 +123,11 @@ export default class LoginView extends Component {
 
   }
   _handleNotification = (notification) => {
-    if (notification.data.type == 0) {
+    this._storeType(notification.data.type);
+    console.warn('role:'+this.state.userRoleId)
+    if (notification.data.type == 0 && this.state.userRoleId!=0) {
+      this._storeData(notification.data);
+      
       if (notification.origin == 'selected') {
         this.props.navigation.navigate('HakpatzaVol', { evName: notification.data.eventName, evNum: notification.data.eventNumber, id: notification.data.id, token: notification.data.token, team: notification.data.team, x_event: notification.data.x_event, y_event: notification.data.y_event });
       }
@@ -105,7 +135,7 @@ export default class LoginView extends Component {
         this.props.navigation.navigate('HakpatzaVol', { evName: notification.data.eventName, evNum: notification.data.eventNumber, id: notification.data.id, token: notification.data.token, team: notification.data.team, x_event: notification.data.x_event, y_event: notification.data.y_event });
       }
     }
-    else if (notification.data.type == 1) {
+    else if (notification.data.type == 1 && this.state.userRoleId!=0) {
       if (notification.origin == 'selected') {
         this.props.navigation.navigate('ActualHakpatza', { evName: notification.data.eventName, evNum: notification.data.eventNumber, id: notification.data.id, token: notification.data.token, team: notification.data.team, x_event: notification.data.x_event, y_event: notification.data.y_event, severity: notification.data.severity });
       }

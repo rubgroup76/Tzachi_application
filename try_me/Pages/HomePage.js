@@ -13,6 +13,7 @@ import {
   listenOrientationChange as lor,
   removeOrientationListener as rol
 } from 'react-native-responsive-screen';
+import {AsyncStorage} from 'react-native';
 
 export default class HomePage extends React.Component {
 

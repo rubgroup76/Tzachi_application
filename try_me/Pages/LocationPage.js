@@ -78,7 +78,7 @@ export default class LocationPage extends React.Component {
         // alert(output);
         this.setState(
           {
-            latitude: position.coords.latitude,// +  Math.random()/1000,
+            latitude: position.coords.latitude,
             longitude: position.coords.longitude
           });
       },
@@ -130,25 +130,7 @@ export default class LocationPage extends React.Component {
                 </Marker>
               ))}
 
-              {/* <Marker
-                coordinate={{
-                  latitude: 32.378045,
-                  longitude: 34.983800
-                }}
-                title='קיבוץ המעפיל'
-                description='שלום לך !'
-                image={require('../assets/LocationBlue.png')}
-              />
-              <Marker
-                coordinate={{
-                  latitude: 32.377813,
-                  longitude: 34.983394
-                }}
-                title='קיבוץ המעפיל'
-                description='שלום לך !'
-                color= 'blue'
-                image={require('../assets/LocationBlue.png')}
-              /> */}
+
             </MapView>
           </View>
           <View
@@ -160,14 +142,7 @@ export default class LocationPage extends React.Component {
             }}>
             <ActionButton icon="place" onPress={this.btnLocation} />
           </View>
-          {/* <View style={{ margin: 10, justifyContent: 'flex-start' }}>
-            <Button
-              primary text="Back to Home Page"
-              icon="arrow-back"
-              onPress={() => {
-                this.props.navigation.navigate('Home');
-              }} />
-          </View> */}
+
         </View>
       </View>
     );
