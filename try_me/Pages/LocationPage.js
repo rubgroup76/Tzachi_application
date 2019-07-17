@@ -122,12 +122,13 @@ export default class LocationPage extends React.Component {
                     latitude: marker.YCoordinate,
                     longitude: marker.XCoordinate
                   }}
-                  //title={marker.EquipmentType}
+                  title={marker.EquipmentType}
                 //description='מטפה'
-                image={require('../assets/equip.png')}
+                image={{ uri: 'http://proj.ruppin.ac.il/bgroup76/prod/ImagesApp/'+marker.Category+'.png' }}
                 >
-                <Text style={styles1.locationText}>{marker.EquipmentType}</Text>
+                {/* <Text style={styles1.locationText}>{marker.EquipmentType}</Text> */}
                 </Marker>
+                
               ))}
 
 

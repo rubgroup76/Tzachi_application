@@ -54,7 +54,7 @@ const AppNavigator = createStackNavigator(
     ManageEvent: ManageEvent
   },
   {
-    initialRouteName: 'Location',
+    initialRouteName: 'LoginTest',
   }
 );
 
