@@ -30,11 +30,6 @@ export default class EmergencyScenarioPage extends React.Component {
     } 
 
     componentDidMount(){
-      //   fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/actionInEvent')
-      // .then(response => response.json())
-      //  .then(response=>this.setState({Scenario:response}))
-      // .catch(error => console.warn('Error:', error.message));
-   
       fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/emergevents')
       .then(response => response.json())
        .then(response=>this.setState({events:response}))
@@ -48,19 +43,13 @@ export default class EmergencyScenarioPage extends React.Component {
           alert("לא נבחר סוג אירוע להצגה");
         }
         else{
-          //this.ShowTheEvents();
+
           this.props.navigation.navigate('ShowEmegancy',{event: this.state.PickerEventValue});
         }
     
         }
 
         ShowTheEvents() {
-          // var DataARR = this.state.Scenario.map((s,i)=>{
-          //   if(s.EventName==this.state.PickerEventValue)
-          //   {
-          //     return s;
-          //   }
-          // });
           var DataARR = [];
           this.state.Scenario.map((s,i)=>{
             if(s.EventName==this.state.PickerEventValue)
@@ -68,10 +57,6 @@ export default class EmergencyScenarioPage extends React.Component {
               DataARR.push(s);
             }
           });
-          // DataARR.map((s,i)=>{
-          //    alert(s.EventName + " " + s.ActionNumber);
-          //   //return <View><Text>s.EventName</Text></View>
-          // });
         }
 
       render(){
@@ -100,7 +85,6 @@ onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValu
     {eventsItems}
 
 </Picker>
- {/* <Button style={{color:'#BED68C'}} title="הצג" onPress={this.clickme}/> */}
  <Button
               title="הצג"
               titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
@@ -113,7 +97,7 @@ onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValu
                 borderWidth: 0,
                 borderColor: 'transparent',
                 borderRadius: 20,
-                //testdjfdjfdjh
+    
               }}
               containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
               icon={{
@@ -126,24 +110,14 @@ onValueChange={(itemValue,itemIndex) => this.setState({PickerEventValue:itemValu
               iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
               onPress={this.clickme}
             />
- {/* <Button title="הצג" onPress ={()=>this.props.navigation.navigate('ShowEmegancy',{event: this.state.PickerEventValue})}/> */}
+ 
         </View>
 
       );
 
 
       }
-      // if(this.ShowEvents==null ){
-      //   return(<View>
-      //     <Text>No Events To Show</Text>
-      // </View>)
-      // }
-      // else{
-      //   let ShowThem = this.state.ShowEvents.map( (s, i) => {
-      //      return<View><Text>s.EventName</Text></View>
-      // }
-      // );
-      // }
+     
     }
 
 }
@@ -177,15 +151,10 @@ const styles = StyleSheet.create({
     textAlign:'center',
 },
 textBigLogInChat: {
-  // position: 'absolute',
-  // top:30,
-  // left:-200,
-  //marginTop: 10,
   top:0,
   alignItems: 'center',
   fontSize: 40,
   color: '#BED68C',
   fontWeight: 'bold',
-  //fontFamily: "serif",
 },
 });

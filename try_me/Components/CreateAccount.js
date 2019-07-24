@@ -4,7 +4,7 @@ import {
   StyleSheet, Text,
   TouchableHighlight,
   TextInput,Image, View,
-  Button, ImageEditor,
+  Button, ImageEditor,KeyboardAvoidingView
 } from 'react-native';
 import firebaseSvc from '../Pages/FirebaseSvc';
 import styles1 from '../Pages/pageStyleTest';
@@ -111,7 +111,8 @@ export default class CreateAccount extends React.Component{
 
   render() {
     return (
-      <View style={styles1.containerChat}>
+      
+      <KeyboardAvoidingView style={styles1.containerChat} behavior="padding">
       <View style={styles1.Header}>
                     <Text style={styles1.textBigLogInChat}>יצירת חשבון</Text>
                 </View>
@@ -123,7 +124,6 @@ export default class CreateAccount extends React.Component{
               keyboardType="email-address"
               underlineColorAndroid='transparent'
               onChangeText={this.onChangeTextEmail}
-              //value={this.state.email}
               />
         </View>
 
@@ -133,7 +133,6 @@ export default class CreateAccount extends React.Component{
               placeholder="Password"
               underlineColorAndroid='transparent'
               onChangeText={this.onChangeTextPassword}
-              //value={this.state.password}
               />
         </View>
 
@@ -143,21 +142,15 @@ export default class CreateAccount extends React.Component{
               placeholder="Name"
               underlineColorAndroid='transparent'
               onChangeText={this.onChangeTextName}
-              //value={this.state.name}
               />
         </View>
 
-<TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
+<TouchableHighlight style={[styles1.buttonContainer, styles1.CreateChatButton]} 
         onPress={this.onPressCreate}>
           <Text style={styles1.loginText}>Create Account</Text>
         </TouchableHighlight>
-
-{/* <TouchableHighlight style={[styles1.buttonContainer, styles1.loginButton]} 
-        onPress={this.onImageUpload}>
-          <Text style={styles1.loginText}>Upload Avatar Image</Text>
-        </TouchableHighlight> */}
         
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -182,5 +175,3 @@ const styles = StyleSheet.create({
     fontSize: 42,
   },
 });
-
-//export default CreateAccount;

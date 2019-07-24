@@ -23,12 +23,6 @@ import {
 } from 'react-native';
 import styles from './pageStyleTest';
 
-// const DisdmissKeyboard=({children})=>(
-//   <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-//     {children}
-//   </TouchableWithoutFeedback>
-//   );
-
 export default class LoginView extends Component {
 
   static navigationOptions = {
@@ -58,7 +52,6 @@ export default class LoginView extends Component {
 
   _storeData = async (user) => {
     try {
-      console.warn(user)
       await AsyncStorage.setItem('Event', JSON.stringify(user));
 
     } catch (error) {
@@ -69,7 +62,6 @@ export default class LoginView extends Component {
   }
   _storeType = async (type) => {
     try {
-      console.warn(type)
       await AsyncStorage.setItem('Type', JSON.stringify(type));
 
     } catch (error) {
@@ -110,7 +102,6 @@ export default class LoginView extends Component {
             .then(tok => {
               this.setState({ token: tok });
               this.updateToken(tok)
-              // this._storeToken(tok);
             })
             
           this._notificationSubscription = Notifications.addListener(this._handleNotification);  
@@ -124,7 +115,6 @@ export default class LoginView extends Component {
   }
   _handleNotification = (notification) => {
     this._storeType(notification.data.type);
-    console.warn('role:'+this.state.userRoleId)
     if (notification.data.type == 0 && this.state.userRoleId!=0) {
       this._storeData(notification.data);
       
@@ -145,7 +135,6 @@ export default class LoginView extends Component {
     }
   };
   onClickListener = (viewId) => {
-    Alert.alert("Alert", "Button pressed " + viewId);
   }
 
   handleKeyDown= (e)=> {
@@ -160,7 +149,7 @@ export default class LoginView extends Component {
           <Text style={styles.textBigLogIn}>ברוכים הבאים</Text>
         </View>
         <Image
-          style={{ position: 'absolute', left: '17.5%', top: '20%', height: hp('20%'), width: wp('40%') }}
+          style={{ position: 'absolute', left: '19.5%', top: '20%', height: hp('22%'), width: wp('41%') }}
           source={require('../assets/hamaapilLogo.png')} />
         <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{ uri: 'https://png.icons8.com/person' }} />

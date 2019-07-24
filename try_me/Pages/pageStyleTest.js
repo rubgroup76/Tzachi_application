@@ -20,12 +20,10 @@ export default StyleSheet.create({
         backgroundColor: '#FFFFFF',
       },
       containerE: {
-        //position: 'absolute',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f1f1f1',
-        //top: 20,
       },
       Header: {
         flex: 2
@@ -39,29 +37,20 @@ export default StyleSheet.create({
         color: '#00008b'
     },
     textBigLogIn: {
-        // position: 'absolute',
-        // top:30,
-        // left:-200,
         marginTop: 20,
         alignItems: 'center',
         fontSize: 50,
         color: '#BED68C',
         margin: 10,
         fontWeight: 'bold',
-        //fontFamily: "serif",
     },
 
     textBigLogInChat: {
-      // position: 'absolute',
-      // top:30,
-      // left:-200,
-      //marginTop: 10,
       top:0,
       alignItems: 'center',
       fontSize: 50,
       color: '#BED68C',
       fontWeight: 'bold',
-      //fontFamily: "serif",
   },
 
   picstyle:{
@@ -86,8 +75,21 @@ export default StyleSheet.create({
           height:45,
           marginBottom:20,
           flexDirection: 'row',
-          alignItems:'center'
+          alignItems:'center',
+          marginLeft:'1%'
       },
+      inputContainerChat: {
+        borderBottomColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
+        borderRadius:30,
+        borderBottomWidth: 1,
+        width:300,
+        height:45,
+        marginBottom:20,
+        flexDirection: 'row',
+        alignItems:'center',
+        marginLeft:1
+    },
       inputContainerE: {
         borderBottomColor: '#F5FCFF',
           backgroundColor: '#FFFFFF',
@@ -122,20 +124,28 @@ export default StyleSheet.create({
         marginBottom:20,
         width:250,
         borderRadius:30,
-        marginLeft:'7%'
-        //color: '#BED68C',
+        marginLeft:'9%'
       },
       loginButton: {
-        //backgroundColor: "#483d8b",
         backgroundColor: '#8FD1DF',
+        
       },
       createAccountButton:{
         //ירוק
         backgroundColor: "#BED68C",
+        marginLeft:25,
       },
       LoginToChatButton:{
         //תכלת
         backgroundColor: "#8FD1DF",
+        marginLeft:25,
+
+      },
+      CreateChatButton:{
+        //תכלת
+        backgroundColor: "#8FD1DF",
+        marginLeft:15,
+
       },
       loginText: {
         color: 'white',

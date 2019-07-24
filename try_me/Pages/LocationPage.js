@@ -51,14 +51,9 @@ export default class LocationPage extends React.Component {
   }
   createMarkers(){
     this.state.kibutz.map((s, i) => {
-      //console.warn(s.EquipmentType)
-      //s.EquipmentName='../assets/'+s.Category+'.png'
       markers.push(s)
     })
      this.state.private.map((s, i) => {
-       //console.warn(s.EquipmentType)
-       //s.EquipmentName='../assets/'+s.Category+'.png'
-      //alert(s.EquipmentName)
        markers.push(s)
      })
 
@@ -68,14 +63,6 @@ export default class LocationPage extends React.Component {
   btnLocation = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // const output =
-        //   'latitude=' + position.coords.latitude +
-        //   '\nlongitude=' + position.coords.longitude +
-        //   '\naltitude=' + position.coords.altitude +
-        //   '\nheading=' + position.coords.heading +
-        //   '\nspeed=' + position.coords.speed
-
-        // alert(output);
         this.setState(
           {
             latitude: position.coords.latitude,
@@ -88,14 +75,12 @@ export default class LocationPage extends React.Component {
   };
 
   render() {
+
     return (
       <View style={styles1.containerChat}>
         {this.state.private.length!=0&&this.state.kibutz.length!=0&&this.createMarkers()}
         <View style={styles.Header}>
           <Text style={styles1.textBigLogInChat}>ציוד על המפה</Text>
-          {/* <Image
-            style={{ alignSelf: 'center', width: 80, height: 80 }}
-            source={require('../assets/icon.png')} /> */}
         </View>
         <View style={styles.ContentLocation}>
           <View style={{
@@ -123,10 +108,8 @@ export default class LocationPage extends React.Component {
                     longitude: marker.XCoordinate
                   }}
                   title={marker.EquipmentType}
-                //description='מטפה'
                 image={{ uri: 'http://proj.ruppin.ac.il/bgroup76/prod/ImagesApp/'+marker.Category+'.png' }}
                 >
-                {/* <Text style={styles1.locationText}>{marker.EquipmentType}</Text> */}
                 </Marker>
                 
               ))}

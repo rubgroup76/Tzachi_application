@@ -67,7 +67,6 @@ export default class HakpatzaVol extends React.Component {
       if (result != null) {
         this.setState({ actEvent: JSON.parse(result) });
       }
-      //else alert('err event');
     }
     )
 
@@ -75,7 +74,6 @@ export default class HakpatzaVol extends React.Component {
       if (result != null) {
         this.setState({ type: JSON.parse(result) });
       }
-      //else alert('err type');
     }
     )
   }
@@ -105,7 +103,6 @@ export default class HakpatzaVol extends React.Component {
           Y_Event: y_event,
           Distance: distance
         }
-        //alert(VolApproves.Distance)
         fetch('http://proj.ruppin.ac.il/bgroup76/prod/api/volapproves', {
           method: 'POST',
           body: JSON.stringify(VolApproves),
@@ -126,7 +123,6 @@ export default class HakpatzaVol extends React.Component {
   }
   render() {
     if (Platform.OS==='ios') {
-    // if (typeof this.props.navigation.state.params != "undefined") {
     if (this.state.noEvent == 1) {
       if (this.state.type == 1) {
         this.props.navigation.navigate('ActualHakpatza')
@@ -141,21 +137,16 @@ export default class HakpatzaVol extends React.Component {
         team = this.state.actEvent.team;
         x_event = this.state.actEvent.x_event;
         y_event = this.state.actEvent.y_event;
-        // type = this.props.navigation.state.params.type;
         return (
           <View>
           <View style={{alignItems: 'center', marginTop: '50%'}}>
 
             <Text style={stylesIphone.textStyle1}>הוקפצת לאירוע! {this.state.actEvent.eventName}</Text>
             <Text style={stylesIphone.textStyle2}>אנא אשר הגעה אם ביכולתך להגיע</Text>
-            {/* <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
-              onPress={this.volApproves}
-            >
-              <Text style={styles.loginText}>מאשר</Text>
-            </TouchableHighlight> */}
+
             <View style={{alignItems: 'center', marginTop: '20%'}}>
               <Button
-              title="צפייה באירוע"
+              title="מאשר"
               titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
               linearGradientProps={{
                 colors: ['#98B0E3', '#8FD1DF'],
@@ -166,7 +157,6 @@ export default class HakpatzaVol extends React.Component {
                 borderWidth: 0,
                 borderColor: 'transparent',
                 borderRadius: 20,
-                //testdjfdjfdjh
               }}
               containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
               icon={{
@@ -180,9 +170,7 @@ export default class HakpatzaVol extends React.Component {
               onPress={this.volApproves}
             />
             </View>
-            <Text>{this.state.actEvent.eventNumber}</Text>
-            {/* <Text>Origin: {this.state.notification.origin}</Text>
-        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
+
           </View>
           </View>
         );
@@ -212,21 +200,15 @@ export default class HakpatzaVol extends React.Component {
         team = this.state.actEvent.team;
         x_event = this.state.actEvent.x_event;
         y_event = this.state.actEvent.y_event;
-        // type = this.props.navigation.state.params.type;
         return (
           <View>
           <View style={{alignItems: 'center', marginTop: '50%'}}>
 
             <Text style={stylesIphone.textStyle1}>הוקפצת לאירוע! {this.state.actEvent.eventName}</Text>
             <Text style={stylesIphone.textStyle2}>אנא אשר הגעה אם ביכולתך להגיע</Text>
-            {/* <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
-              onPress={this.volApproves}
-            >
-              <Text style={styles.loginText}>מאשר</Text>
-            </TouchableHighlight> */}
             <View style={{alignItems: 'center', marginTop: '20%'}}>
               <Button
-              title="צפייה באירוע"
+              title="מאשר"
               titleStyle={{ fontWeight: 'bold', fontSize: 18 }}
               linearGradientProps={{
                 colors: ['#98B0E3', '#8FD1DF'],
@@ -237,7 +219,6 @@ export default class HakpatzaVol extends React.Component {
                 borderWidth: 0,
                 borderColor: 'transparent',
                 borderRadius: 20,
-                //testdjfdjfdjh
               }}
               containerStyle={{ marginVertical: 10, height: 40, width: 200 }}
               icon={{
@@ -251,9 +232,6 @@ export default class HakpatzaVol extends React.Component {
               onPress={this.volApproves}
             />
             </View>
-            <Text>{this.state.actEvent.eventNumber}</Text>
-            {/* <Text>Origin: {this.state.notification.origin}</Text>
-        <Text>Data: {JSON.stringify(this.state.notification.data)}</Text> */}
           </View>
           </View>
         );
@@ -282,7 +260,6 @@ color: '#ff8080',
 },
 textStyle2: {
   fontSize:20,
-  //fontWeight: 'bold',
   textAlign: 'center',
   alignItems: 'center',
   },

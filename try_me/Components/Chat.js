@@ -1,8 +1,7 @@
 import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import firebaseSvc from '../Pages/FirebaseSvc';
-import { View, StyleSheet, Text, Image } from 'react-native';
-//import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { View, StyleSheet, KeyboardAvoidingView, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -88,16 +87,12 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    //alert("componentDidMount");
     firebaseSvc.refOn(message => 
       this.setState(previousState => ({
-        //messages: GiftedChat.append(previousState.messages, message),
         messages: GiftedChat.append(previousState.messages, {
            id: message.user.id,
-          // name: message.user.name,
           text: message.text,
           createdAt: Date(message.timestamp),
-          //crearedAt: new Date(),
           user: {
            _id: message.user._id,
           name: message.user.name,},
@@ -108,7 +103,6 @@ class Chat extends React.Component {
   }
 
   componentWillUnmount() {
-    //alert("componentWillUnmount");
     firebaseSvc.refOff();
   }
 }

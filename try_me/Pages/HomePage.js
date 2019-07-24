@@ -285,33 +285,9 @@ else{
             size='xlarge'
           />}
         </View>
-        {/* <View style={styles.Content}>
-          <View style={{ position: 'absolute', bottom: 0 }}>
-            
-            <Button
-               primary text="צפייה באירוע"
-              icon="info"
-              style={{fontSize:20}}
-              onPress={() => {
-                this.props.navigation.navigate('ManageEvent');
-              }} />
-          </View>
-
-          {this.state.showDialog &&
-            <RiderDialog
-              item={this.state.itemClickedObj}
-              changeShowDialogState={this.changeShowDialogState} />}
-         
-        </View> */}
+        
          <View style={styles.Content}>
             <View style={{ position: 'absolute', bottom: 0}}>
-              {/* <Button
-                 title="צפייה באירוע"
-                icon="info"
-                //style={{fontSize:20}}
-                onPress={() => {
-                  this.props.navigation.navigate('ManageEvent');
-                }} /> */}
                 <Button
               title="צפייה באירוע"
               titleStyle={{ fontWeight: 'bold' }}
@@ -323,7 +299,6 @@ else{
               buttonStyle={{
                 borderWidth: 0,
                 borderColor: 'transparent',
-                //backgroundColor: 'red',
                 borderRadius: 20,
               }}
               containerStyle={{ marginVertical: 10, height: 40, width: 200 }}

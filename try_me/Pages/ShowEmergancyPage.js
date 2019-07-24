@@ -30,14 +30,7 @@ export default class ShowEmergancyPage extends React.Component {
       }
 
         ShowTheEvents() {
-            // var DataARR = this.state.Scenario.map((s,i)=>{
-            //   if(s.EventName==this.state.PickerEventValue)
-            //   {
-            //     return s;
-            //   }
-            // });
             event=this.props.navigation.state.params.event;
-            //alert(event+" " + this.state.Scenario[1]);
             DataARR = [];
             this.state.Scenario.map((s,i)=>{
               if(s.EventName==event)
@@ -46,10 +39,6 @@ export default class ShowEmergancyPage extends React.Component {
                 this.state.count=this.state.count+1;
               }
             });
-            // DataARR.map((s,i)=>{
-            //    alert(s.EventName + " " + s.ActionNumber);
-            //   //return <View><Text>s.EventName</Text></View>
-            // });
           }
 
       render(){
@@ -66,7 +55,6 @@ export default class ShowEmergancyPage extends React.Component {
                 return <View style={styles.instructions} key={i}><Text style={styles.textStyleIphone}>{s.ActionNumber}.  {s.ActionDesc}</Text></View>
            }
            );
-         // alert(event);
           return(
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true}>
               <View style={styles.container}>
@@ -95,7 +83,6 @@ export default class ShowEmergancyPage extends React.Component {
                 return <View style={styles.instructions} key={i}><Text style={styles.textStyle}>{s.ActionNumber}.  {s.ActionDesc}</Text></View>
            }
            );
-         // alert(event);
           return(
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true}>
               <View style={styles.container}>
@@ -115,21 +102,11 @@ export default class ShowEmergancyPage extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      //flex: 1,
-      //position: 'absolute',
-      //margin: 20,
       justifyContent: 'center',
-      //alignItems: 'center',
       textAlign:'center',
       backgroundColor: '#FFFFFF',
-     //width: '90%',
-      //height: '90%',
-      //borderColor: '#000000',
-      //borderStyle: 'solid',
-      //borderWidth: 4,
     },
     instructions: {
-      //textAlign: 'right',
       color: '#333333',
       fontWeight: 'bold',
       marginTop: 18,
@@ -137,28 +114,14 @@ const styles = StyleSheet.create({
       textAlign:'right',
     },
     textStyleIphone:{
-        //textAlign: 'left',
-        //textShadowColor: '#8FD1DF',
-        //textShadowOffset: { width: 2, height: 2 },
-        //textShadowRadius : 5,
         textAlign:'right',
         marginRight:10,
         fontSize:16,
-        // borderColor: '#000000',
-        // borderStyle: 'solid',
-        // borderWidth: 2,
 
     },
     textStyle:{
-      //textAlign: 'left',
-      //textShadowColor: '#8FD1DF',
-      //textShadowOffset: { width: 2, height: 2 },
-      //textShadowRadius : 5,
       marginLeft:10,
       fontSize:16,
-      // borderColor: '#000000',
-      // borderStyle: 'solid',
-      // borderWidth: 2,
 
   },
     HeaderIphone:{
@@ -175,32 +138,20 @@ const styles = StyleSheet.create({
       marginTop:10,
    },
     textBigLogInChatIphone: {
-        // position: 'absolute',
-        // top:30,
-        // left:-200,
-        //marginTop: 10,
         top:0,
         alignItems: 'center',
         textAlign:'right',
         fontSize: 40,
-        //color: '#BED68C',
         color: 'black',
         fontWeight: 'bold',
-        //fontFamily: "serif",
     },
     textBigLogInChat: {
-      // position: 'absolute',
-      // top:30,
-      // left:-200,
-      //marginTop: 10,
       top:0,
       textAlign: 'center',
       alignItems: 'center',
       fontSize: 40,
-      //color: '#BED68C',
       color: 'black',
       fontWeight: 'bold',
-      //fontFamily: "serif",
   },
   });
   

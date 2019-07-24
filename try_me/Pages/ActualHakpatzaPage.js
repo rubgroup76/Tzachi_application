@@ -32,7 +32,6 @@
       if (result != null) {
         this.setState({ actEvent1: JSON.parse(result) });
       }
-      //else alert('err event');
     }
     )
   }
@@ -70,7 +69,6 @@
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },

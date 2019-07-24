@@ -121,10 +121,6 @@ export default class Hakpatza extends Component {
         <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true} style={stylesIphone.Stylescrollview}>
        <DisdmissKeyboard>
         <View style={stylesIphone.container1}>
-          {/* <Text style={styles.welcome}>
-            סוג אירוע
-        </Text> */}
-        {/* <View> */}
         <View style={[{justifyContent: 'flex-start'}, stylesIphone.elementsContainer]}>
         <View style={stylesIphone.pickerview}>
           <Picker
@@ -137,9 +133,6 @@ export default class Hakpatza extends Component {
 
           </Picker>
           </View>
-          {/* <Text style={styles.welcome}>
-            חומרה
-        </Text> */}
         <View style={stylesIphone.pickerview}>
           <Picker
             style={stylesIphone.picker2}
@@ -190,28 +183,22 @@ export default class Hakpatza extends Component {
             }
           </MapView>
           </View>
-          {/* <Button style={styles.button}  primary text="הקפץ" onPress={this.clickMe} /> */}
           <View style={{marginTop: 290 , alignItems: 'center' , marginRight: 40}}>
           <Button
                 title="הקפץ"
                 iconContainerStyle={{ marginRight: 10, marginTop: 20 }}
                 titleStyle={{ fontWeight: '600' }}
                 buttonStyle={{
-                  //backgroundColor: 'rgba(199, 43, 98, 1)',
                   backgroundColor: '#8FD1DF',
                   borderColor: 'transparent',
                   borderWidth: 0,
                   borderRadius: 20,
                   marginBottom: -10,
-                  // position: 'absolute',
-                  // marginBottom: 1,
                 }}
                 containerStyle={{ width: 100 }}
                 onPress={this.clickMe}
               />
               </View>
-          {/* <Button title="הקפץ" onPress={this.clickMe} /> */}
-        {/* </View> */}
         </View>
         </View>
          </DisdmissKeyboard>
@@ -233,9 +220,6 @@ export default class Hakpatza extends Component {
       return (
         <DisdmissKeyboard>
         <View style={styles.container}>
-          {/* <Text style={styles.welcome}>
-            סוג אירוע
-        </Text> */}
           <Picker
             style={styles.picker}
             selectedValue={this.state.PickerEventValue}
@@ -245,10 +229,6 @@ export default class Hakpatza extends Component {
             {eventsItems}
 
           </Picker>
-
-          {/* <Text style={styles.welcome}>
-            חומרה
-        </Text> */}
           <Picker
             style={styles.picker}
             selectedValue={this.state.PickerSeverityValue}
@@ -290,15 +270,11 @@ export default class Hakpatza extends Component {
               />
             }
           </MapView>
-
-          {/* <Button style={styles.button}  primary text="הקפץ" onPress={this.clickMe} /> */}
-          {/* <Button title="הקפץ" onPress={this.clickMe} /> */}
           <Button
                 title="הקפץ"
                 iconContainerStyle={{ marginRight: 10, marginTop: 20 }}
                 titleStyle={{ fontWeight: '600' }}
                 buttonStyle={{
-                  //backgroundColor: 'rgba(199, 43, 98, 1)',
                   backgroundColor: '#8FD1DF',
                   borderColor: 'transparent',
                   borderWidth: 0,
@@ -321,50 +297,34 @@ const stylesIphone = StyleSheet.create({
     justifyContent:'space-around',
     backgroundColor: '#f1f1f1',
     alignItems: 'center',
-    //marginTop: -20,
-    //justifyContent: 'center',
-   // fontSize: 30,
 },
   welcome: {
     fontSize: 18,
     textAlign: 'right',
-    //margin: -5,
     fontWeight:'bold',
     marginBottom: 30,
     marginTop: 10,
     marginRight: 50,
-    //marginLeft: -50,
   },
   welcome1: {
-    //marginBottom: 10,
     marginTop: 50,
   },
   elementsContainer: {
     flex:1,
-    //flexGrow: 1,
     backgroundColor: '#ecf5fd',
     marginLeft: 24,
-    //marginRight: 24,
     marginBottom: 10,
-    //marginTop: -10,
   },
   Stylescrollview:{
     borderRightColor: 'red',
     borderRadius: 5,
     borderWidth: 1,
   },
-  // instructions: {
-  //   textAlign: 'right',
-  //   color: '#333333',
-  //   marginBottom: 5,
-  // },
-
   TxtInp: {
     height: 35,
     width: 70,
     borderColor: '#00008b',
     borderWidth: 1,
-    //margin: 10,
     fontSize: 20,
     padding: 6,
     borderRadius: 6,
@@ -374,12 +334,7 @@ const stylesIphone = StyleSheet.create({
   picker1: {
     width: '80%',
     height:'10%',
-    //marginBottom: 10,
     marginLeft: 24,
-    //marginTop: 10,
-    //position: "absolute",
-   // margin: -10,
-    //padding: 10,
     transform: [
       { scaleX: 1.1 }, 
       { scaleY: 1.1 },
@@ -388,12 +343,7 @@ const stylesIphone = StyleSheet.create({
   picker11: {
     width: '80%',
     height:'10%',
-    //marginBottom: 10,
     marginLeft: 24,
-    //marginTop: 10,
-    //position: "absolute",
-   // margin: -10,
-    //padding: 10,
   },
   picker2: {
     width: '80%',
@@ -409,8 +359,6 @@ const stylesIphone = StyleSheet.create({
   },
   pickerview: {
     position: "relative",
-    //margin: -20,
-    //marginBottom: 10,
     marginTop: 10,
     marginBottom: 20,
   },
